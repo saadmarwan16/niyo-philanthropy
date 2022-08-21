@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["localhost", "https://res.cloudinary.com"],
+    domains: ["localhost", "res.cloudinary.com"],
   },
 };
 
