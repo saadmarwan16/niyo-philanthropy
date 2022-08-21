@@ -17,7 +17,7 @@ const OverlappingGrid: FunctionComponent<OverlappingGridProps> = ({
       <div className="avatar">
         <div className="w-64 rounded">
           <Image
-            alt="Image 1"
+            alt={image_path1}
             src={image_path1}
             layout="fill"
             className="rounded-lg"
@@ -27,7 +27,7 @@ const OverlappingGrid: FunctionComponent<OverlappingGridProps> = ({
       <div className="avatar">
         <div className="w-64 rounded">
           <Image
-            alt="Image 2"
+            alt={image_path2}
             src={image_path2}
             layout="fill"
             className="rounded-lg"
@@ -37,7 +37,7 @@ const OverlappingGrid: FunctionComponent<OverlappingGridProps> = ({
       <div className="avatar">
         <div className="w-64 rounded">
           <Image
-            alt="Image 3"
+            alt={image_path3}
             src={image_path3}
             layout="fill"
             className="rounded-lg"
