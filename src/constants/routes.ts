@@ -11,7 +11,7 @@ abstract class Routes {
 
   static CAMPAIGN_DETAILS = (slug: string, id: string) =>
     `/campaigns/${slug}/${id}`;
-  static BLOG_DETAILS = (slug: string) => `/blog/${slug}`;
+  static BLOG_DETAILS = (slug: string, id: string) => `/blog/${slug}/${id}`;
   static USER_PROFILE = (username: string) => `/profile/${username}`;
 }
 

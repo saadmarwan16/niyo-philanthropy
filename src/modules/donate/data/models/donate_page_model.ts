@@ -5,16 +5,16 @@
 //   const donatePageModel = Convert.toDonatePageModel(json);
 
 export interface DonatePageModel {
-  data: Data;
+  data: DonatePageModelData;
   meta: Meta;
 }
 
-export interface Data {
+export interface DonatePageModelData {
   id: number;
-  attributes: Attributes;
+  attributes: PurpleAttributes;
 }
 
-export interface Attributes {
+export interface PurpleAttributes {
   title: string;
   description: string;
   createdAt: Date;
@@ -24,16 +24,19 @@ export interface Attributes {
 }
 
 export interface Footer {
-  id: number;
-  phone: string;
-  email: string;
-  address: string;
-  description: Description;
+  data: FooterData;
 }
 
-export interface Description {
+export interface FooterData {
   id: number;
-  content: string;
+  attributes: FluffyAttributes;
+}
+
+export interface FluffyAttributes {
+  description: string;
+  email: string;
+  phone: string;
+  address: string;
 }
 
 export interface Meta {}

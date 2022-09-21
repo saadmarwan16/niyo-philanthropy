@@ -12,7 +12,7 @@ const getHomeQuery = () => {
           },
         },
         footer: {
-          populate: "*",
+          fields: ["description", "email", "phone", "address"],
         },
         about_us: {
           populate: "*",
@@ -27,7 +27,6 @@ const getHomeQuery = () => {
           populate: "*",
         },
         making_difference: {
-          // populate: ["description", "image1", "image2", "image3"],
           populate: {
             description: {
               populate: "*",

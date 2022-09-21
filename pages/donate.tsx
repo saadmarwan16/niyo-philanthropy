@@ -62,7 +62,7 @@ const Donate: NextPage<DonatePageProps> = (props) => {
             </div>
           </main>
           <ContactUs />
-          <Footer data={results.data.attributes.footer} />
+          <Footer data={results.data.attributes.footer.data.attributes} />
         </>
       )}
     </div>

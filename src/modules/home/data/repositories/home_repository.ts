@@ -1,5 +1,5 @@
 import handleError from "../../../../shared/errors/handleError";
-import getHomeQuery from "../../queries/get_home_query";
+import getHomeQuery from "../queries/get_home_query";
 import homeProvider from "../providers/home_provider";
 
 export class HomeRepository {

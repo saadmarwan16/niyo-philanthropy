@@ -47,7 +47,7 @@ export interface FluffyAttributes {
 }
 
 export interface Footer {
-  data: FooterData;
+  data: FooterData | null;
 }
 
 export interface FooterData {

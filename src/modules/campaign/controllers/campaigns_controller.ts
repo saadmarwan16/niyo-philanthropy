@@ -6,10 +6,6 @@ export class CampaignsController {
   campaigns: CampaignsModel | null = null;
   error: ErrorModel | null = null;
 
-  create = async (data: string) => {};
-
-  getMany = async (query: string) => {};
-
   getAll = async () => {
     const { error, results } = await campaignsRepository.getAll();
     this.campaigns = results;

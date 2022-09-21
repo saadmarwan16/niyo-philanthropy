@@ -2,7 +2,6 @@ import { FunctionComponent, useMemo } from "react";
 import { CampaignModelData } from "../data/models/campaign_model";
 import Image from "next/image";
 import { BASE_URL } from "../../../constants/urls";
-import ContactUs from "../../../shared/components/ContactUs";
 import Footer from "../../../shared/components/Footer";
 
 interface SingleCampaignDetailsProps {
@@ -17,7 +16,6 @@ const SingleCampaignDetails: FunctionComponent<SingleCampaignDetailsProps> = ({
     body,
     category,
     conclusion,
-    createdAt,
     footer,
     image: imageData,
     introduction,
@@ -95,7 +93,7 @@ const SingleCampaignDetails: FunctionComponent<SingleCampaignDetailsProps> = ({
           </div>
         </div>
       </div>
-      <Footer data={footer.data.attributes} />
+      {footer.data?.attributes && <Footer data={footer.data.attributes} />}
     </main>
   );
 };

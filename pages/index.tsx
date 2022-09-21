@@ -8,7 +8,7 @@ import HomeMainHero from "../src/modules/home/components/HomeMainHero";
 import MissionAndVision from "../src/modules/home/components/MissionAndVision";
 import SupportMethods from "../src/modules/home/components/SupportMethods";
 import homeController from "../src/modules/home/controllers/home_controller";
-import { HomePageModel } from "../src/modules/home/data/models/home_page_model";
+import { HomeModel } from "../src/modules/home/data/models/home_page_model";
 import Meta from "../src/shared/components/Meta";
 import { ErrorModel } from "../src/shared/errors/error_model";
 import { BiErrorAlt } from "react-icons/bi";
@@ -18,7 +18,7 @@ import { useAuthContext } from "../src/modules/auth/AuthContext";
 
 interface HomeProps {
   error: ErrorModel | null;
-  results: HomePageModel | null;
+  results: HomeModel | null;
 }
 
 const Home: NextPage<HomeProps> = ({ error, results }) => {
@@ -52,7 +52,7 @@ const Home: NextPage<HomeProps> = ({ error, results }) => {
           <HomeCategories data={data.categories} />
           <HomeCampaigns campaigns={data.campaigns} />
           <ContactUs />
-          <Footer data={data.footer} />
+          <Footer data={data.footer.data.attributes} />
         </>
       )}
     </div>
