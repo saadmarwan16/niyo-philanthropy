@@ -1,5 +1,5 @@
 import handleError from "../../../../shared/errors/handleError";
-import getHomePopulate from "../../queries/getHomePopulate";
+import getHomeQuery from "../../queries/get_home_query";
 import homeProvider from "../providers/home_provider";
 
 export class HomeRepository {
@@ -16,7 +16,7 @@ export class HomeRepository {
   update = async (id: string, data: string) => {};
 
   getQuery = () => {
-    return getHomePopulate();
+    return getHomeQuery();
   };
 }
 

@@ -1,25 +1,29 @@
 import type { GetServerSideProps, NextPage } from "next";
-import ContactUs from "../src/modules/home/components/ContactUs";
+import ContactUs from "../src/shared/components/ContactUs";
 import Details from "../src/modules/home/components/Details";
-import Footer from "../src/modules/home/components/Footer";
+import Footer from "../src/shared/components/Footer";
 import HomeCampaigns from "../src/modules/home/components/HomeCampaigns";
 import HomeCategories from "../src/modules/home/components/HomeCategories";
 import HomeMainHero from "../src/modules/home/components/HomeMainHero";
 import MissionAndVision from "../src/modules/home/components/MissionAndVision";
 import SupportMethods from "../src/modules/home/components/SupportMethods";
 import homeController from "../src/modules/home/controllers/home_controller";
-import { HomeModel } from "../src/modules/home/data/models/home_model";
+import { HomePageModel } from "../src/modules/home/data/models/home_page_model";
 import Meta from "../src/shared/components/Meta";
 import { ErrorModel } from "../src/shared/errors/error_model";
 import { BiErrorAlt } from "react-icons/bi";
+import AboutUs from "../src/modules/home/components/AboutUs";
+import Achievements from "../src/modules/home/components/Achievements";
+import { useAuthContext } from "../src/modules/auth/AuthContext";
 
 interface HomeProps {
   error: ErrorModel | null;
-  results: HomeModel | null;
+  results: HomePageModel | null;
 }
 
 const Home: NextPage<HomeProps> = ({ error, results }) => {
   const data = results?.data.attributes;
+  const { user } = useAuthContext();
 
   return (
     <div>
@@ -40,30 +44,15 @@ const Home: NextPage<HomeProps> = ({ error, results }) => {
             title={data.slogan}
             description={data.company_description}
           />
-          <MissionAndVision mission={data.mission} vision={data.vision} />
-          <Details
-            children_description={data.making_difference_children_description}
-            description={data.company_description}
-            donation_description={data.making_difference_donation_description}
-            medical_description={data.making_difference_medical_description}
-          />
+          <AboutUs data={data.about_us} />
+          <MissionAndVision data={data.mission_and_vision} />
+          <Details data={data.making_difference} />
+          <Achievements data={data.achievements} />
           <SupportMethods />
-          <HomeCategories
-            description={data.categories_description}
-            food_description={data.categories_food_description}
-            human_description={data.categories_human_description}
-            medicine_description={data.categories_medicine_description}
-            study_description={data.categories_study_description}
-            title={data.categories_title}
-          />
+          <HomeCategories data={data.categories} />
           <HomeCampaigns campaigns={data.campaigns} />
           <ContactUs />
-          <Footer
-            description={data.company_description}
-            email={data.email}
-            phone_number={data.phone_number}
-            physical_address={data.physical_address}
-          />
+          <Footer data={data.footer} />
         </>
       )}
     </div>

@@ -18,9 +18,14 @@ const SupportMethods: FunctionComponent<SupportMethodsProps> = () => {
       </div>
       <div className="flex items-center gap-6 w-fit">
         <GiShoppingCart className="text-2xl md:text-3xl" />
-        <Link href={Routes.SHOP}>
-          <a className="hover:text-primary">Buy Our Merch</a>
-        </Link>
+        <a
+          className="hover:text-primary"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSeE46LOmWGRGtrYEqKdRVa16uUBa4SATnVZRx4nlH4VvOvZtg/viewform"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Buy Our Merch
+        </a>
       </div>
       <div className="flex items-center gap-6 w-fit">
         <FaUsers className="text-2xl md:text-3xl" />

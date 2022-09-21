@@ -4,23 +4,16 @@ import { AiOutlineInstagram, AiFillYoutube } from "react-icons/ai";
 import Image from "next/image";
 import { FaLinkedinIn } from "react-icons/fa";
 import Link from "next/link";
-import Routes from "../../../constants/routes";
+import Routes from "../../constants/routes";
+import { Footer } from "../../modules/home/data/models/home_page_model";
 
 interface FooterProps {
-  description: string;
-  phone_number: string;
-  email: string;
-  physical_address: string;
+  data: Footer;
 }
 
-const Footer: FunctionComponent<FooterProps> = ({
-  description,
-  email,
-  phone_number,
-  physical_address,
-}) => {
+const Footer: FunctionComponent<FooterProps> = ({ data }) => {
   return (
-    <section className="flex flex-col gap-12 py-16 text-white home-section-horizontal-padding bg-slate-900">
+    <footer className="flex flex-col gap-12 py-16 text-white home-section-horizontal-padding bg-slate-900">
       <div className="grid grid-cols-2 gap-16 lg:gap-6 xl:gap-16 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9">
         <div className="flex flex-col col-span-2 gap-5 sm:col-span-4 md:col-span-6 lg:col-span-3 sm:gap-8">
           <Link href={Routes.HOME}>
@@ -34,7 +27,11 @@ const Footer: FunctionComponent<FooterProps> = ({
             </a>
           </Link>
 
-          <p className="w-full md:w-4/5 lg:w-2/3">{description}</p>
+          <p className="w-full md:w-4/5 lg:w-2/3">
+            Niyo Philanthropy is a non-profit organization that collaborates
+            with CHANGE-MAKERS to provide support to those in need. You TOO can
+            be of great help
+          </p>
           <div className="flex gap-4">
             <a
               className="bg-red-500 footer-social-link"
@@ -75,9 +72,9 @@ const Footer: FunctionComponent<FooterProps> = ({
         </div>
         <div className="flex flex-col gap-2 sm:col-span-2 md:col-span-2 sm:gap-3 md:gap-4">
           <h2 className="heading3">About Us</h2>
-          <p>{phone_number}</p>
-          <p>{email}</p>
-          <p>{physical_address}</p>
+          <p>{data.phone}</p>
+          <p>{data.email}</p>
+          <p>{data.address}</p>
         </div>
       </div>
 
@@ -85,7 +82,7 @@ const Footer: FunctionComponent<FooterProps> = ({
         @Copyright <span className="text-accent-focus">Niyo Philanthropy</span>.
         All rights reserved
       </p>
-    </section>
+    </footer>
   );
 };
 

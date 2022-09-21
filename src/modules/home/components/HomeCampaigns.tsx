@@ -3,8 +3,8 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Image from "next/image";
 import Link from "next/link";
 import Routes from "../../../constants/routes";
-import { Campaigns } from "../data/models/home_model";
-import { BASE_URL } from "../../../shared/constants/urls";
+import { Campaigns } from "../data/models/home_page_model";
+import { BASE_URL } from "../../../constants/urls";
 import { motion, useAnimation } from "framer-motion";
 
 interface HomeCampaignsProps {
@@ -74,7 +74,7 @@ const HomeCampaigns: FunctionComponent<HomeCampaignsProps> = ({
                 <Image
                   // src="/images/image4.jpg"
                   src={
-                    campaign.attributes.image.data
+                    campaign.attributes?.image?.data
                       ? `${BASE_URL}${campaign.attributes.image.data.attributes.url}`
                       : "/images/no_image.jpg"
                   }
@@ -87,7 +87,7 @@ const HomeCampaigns: FunctionComponent<HomeCampaignsProps> = ({
               </span>
             </div>
             <div className="gap-2 sm:gap-3 card-body">
-              <Link href={Routes.CAMPAIGN_DETAILS(campaign.id)}>
+              <Link href={Routes.CAMPAIGN_DETAILS("this is the title")}>
                 <a className="hover:text-primary">
                   <h2 className="heading2 !font-medium line-clamp-1">
                     {campaign.attributes.title}
@@ -95,7 +95,8 @@ const HomeCampaigns: FunctionComponent<HomeCampaignsProps> = ({
                 </a>
               </Link>
               <p className="text-gray-500 line-clamp-3">
-                {campaign.attributes.description}
+                {/* {campaign.attributes.description} */}
+                Description
               </p>
               <progress
                 className="w-full mt-4 sm:mt-6 progress progress-primary"
@@ -127,7 +128,9 @@ const HomeCampaigns: FunctionComponent<HomeCampaignsProps> = ({
               </div>
 
               <div className="flex justify-end mt-6">
-                <a className="custom-btn-secondary w-fit">Donate now</a>
+                <Link href={Routes.DONATE}>
+                  <a className="custom-btn-secondary w-fit">Donate now</a>
+                </Link>
               </div>
             </div>
           </div>

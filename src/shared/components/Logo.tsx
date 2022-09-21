@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FunctionComponent } from "react";
-import Routes from "../../../constants/routes";
+import Routes from "../../constants/routes";
 
 interface LogoProps {}
 

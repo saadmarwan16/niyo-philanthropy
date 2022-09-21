@@ -1,11 +1,13 @@
 import { FunctionComponent, useState } from "react";
-import InputField from "../../../shared/components/InputField";
+import InputField from "./InputField";
 import { IoIosSend } from "react-icons/io";
 import { SubmitHandler, useForm } from "react-hook-form";
-import emailController from "../../../shared/controllers/email_controller";
-import { IContactUsInputs } from "../../../shared/types/interface";
-import errorToast from "../../../shared/utils/errorToast";
-import successToast from "../../../shared/utils/successToast";
+import emailController from "../controllers/email_controller";
+import { IContactUsInputs } from "../types/interface";
+import errorToast from "../utils/errorToast";
+import successToast from "../utils/successToast";
+import { yupResolver } from "@hookform/resolvers/yup";
+import contactUsSchema from "../../constants/schemas/contact_us_schema";
 
 interface ContactUsProps {}
 
@@ -16,7 +18,9 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IContactUsInputs>();
+  } = useForm<IContactUsInputs>({
+    resolver: yupResolver(contactUsSchema)
+  });
 
   const onSubmit: SubmitHandler<IContactUsInputs> = async (data) => {
     setIsLoading(true);
@@ -59,13 +63,14 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
           isOptional={false}
           type="text"
           placeholder="Enter your first name here"
-          register={register("first_name", {
-            required: "First name is required",
-            minLength: {
-              value: 2,
-              message: "First name must contain at least 2 characters",
-            },
-          })}
+          register={register("first_name")}
+          // register={register("first_name", {
+          //   required: "First name is required",
+          //   minLength: {
+          //     value: 2,
+          //     message: "First name must contain at least 2 characters",
+          //   },
+          // })}
           error={errors.first_name}
         />
         <InputField
@@ -81,9 +86,10 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
           isOptional={false}
           type="email"
           placeholder="Enter your email address here"
-          register={register("email", {
-            required: "Email address is required",
-          })}
+          register={register("email")}
+          // register={register("email", {
+          //   required: "Email address is required",
+          // })}
           error={errors.email}
         />
         <InputField
@@ -105,13 +111,14 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
                 errors.message && "!border-error"
               }`}
               placeholder="Enter your message here"
-              {...register("message", {
-                required: "Message body is required",
-                minLength: {
-                  value: 15,
-                  message: "Message must contain at least 15 characters",
-                },
-              })}
+              {...register("message")}
+              // {...register("message", {
+              //   required: "Message body is required",
+              //   minLength: {
+              //     value: 15,
+              //     message: "Message must contain at least 15 characters",
+              //   },
+              // })}
             ></textarea>
             {errors.message && (
               <label className="label">

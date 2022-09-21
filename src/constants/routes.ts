@@ -1,14 +1,17 @@
 abstract class Routes {
   static HOME = "/";
-  static ABOUT_US = "/about-us";
   static CAMPAIGNS = "/campaigns";
   static DONATE = "/donate";
   static GALLERY = "/gallery";
+  static BLOG = "/blog";
   static LOGIN = "/auth/login";
   static REGISTER = "/auth/register";
-  static SHOP = "/shop";
+  static FORGOT_PASSWORD = "/auth/forgot-password";
+  static RESET_PASSWORD = "/auth/reset-password";
 
-  static CAMPAIGN_DETAILS = (id: number) => `/campaigns/${id}`;
+  static CAMPAIGN_DETAILS = (slug: string) => `/campaigns/${slug}`;
+  static BLOG_DETAILS = (slug: string) => `/blog/${slug}`;
+  static USER_PROFILE = (username: string) => `/profile/${username}`;
 }
 
 export default Routes;
