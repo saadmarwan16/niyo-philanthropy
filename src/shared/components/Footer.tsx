@@ -5,10 +5,10 @@ import Image from "next/image";
 import { FaLinkedinIn } from "react-icons/fa";
 import Link from "next/link";
 import Routes from "../../constants/routes";
-import { Footer } from "../../modules/home/data/models/home_page_model";
+import { IFooter } from "../types/interface";
 
 interface FooterProps {
-  data: Footer;
+  data: IFooter;
 }
 
 const Footer: FunctionComponent<FooterProps> = ({ data }) => {
@@ -27,11 +27,7 @@ const Footer: FunctionComponent<FooterProps> = ({ data }) => {
             </a>
           </Link>
 
-          <p className="w-full md:w-4/5 lg:w-2/3">
-            Niyo Philanthropy is a non-profit organization that collaborates
-            with CHANGE-MAKERS to provide support to those in need. You TOO can
-            be of great help
-          </p>
+          <p className="w-full md:w-4/5 lg:w-2/3">{data.description}</p>
           <div className="flex gap-4">
             <a
               className="bg-red-500 footer-social-link"

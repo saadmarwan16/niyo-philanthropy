@@ -100,8 +100,8 @@ const HomeCampaigns: FunctionComponent<HomeCampaignsProps> = ({
               </p>
               <progress
                 className="w-full mt-4 sm:mt-6 progress progress-primary"
-                value="40"
-                max="100"
+                value={campaign.attributes.amount_raised}
+                max={campaign.attributes.target}
               >
                 text
               </progress>

@@ -34,7 +34,6 @@ const Login: NextPage<LoginPageProps> = ({}) => {
     authRepository
       .login(data)
       .then((res) => {
-        console.log(res);
         const { error, results } = res;
         if (error) {
           errorToast(error.name, error.message, "register");

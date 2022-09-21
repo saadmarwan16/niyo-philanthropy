@@ -1,9 +1,15 @@
 import qs from "qs";
 
-const getDonateQuery = () => {
+const getCampaignsQuery = () => {
   return qs.stringify(
     {
       populate: {
+        image: {
+          fields: ["url"],
+        },
+        category: {
+          populate: "*",
+        },
         footer: {
           fields: ["description", "email", "phone", "address"],
         },
@@ -15,4 +21,4 @@ const getDonateQuery = () => {
   );
 };
 
-export default getDonateQuery;
+export default getCampaignsQuery;

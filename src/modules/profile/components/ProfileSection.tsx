@@ -24,8 +24,7 @@ const ProfileSection: FunctionComponent<ProfileSectionProps> = () => {
       // amount: 10,
     },
   });
-  const onSubmit: SubmitHandler<IProfileInputs> = async (data) =>
-    console.log(data);
+  const onSubmit: SubmitHandler<IProfileInputs> = async (data) => {};
 
   return (
     <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>

@@ -34,9 +34,6 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
       );
     }
 
-    console.log(results);
-    console.log(error);
-
     if (results) {
       reset();
       successToast(
@@ -64,13 +61,6 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
           type="text"
           placeholder="Enter your first name here"
           register={register("first_name")}
-          // register={register("first_name", {
-          //   required: "First name is required",
-          //   minLength: {
-          //     value: 2,
-          //     message: "First name must contain at least 2 characters",
-          //   },
-          // })}
           error={errors.first_name}
         />
         <InputField
@@ -87,9 +77,6 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
           type="email"
           placeholder="Enter your email address here"
           register={register("email")}
-          // register={register("email", {
-          //   required: "Email address is required",
-          // })}
           error={errors.email}
         />
         <InputField
@@ -112,13 +99,6 @@ const ContactUs: FunctionComponent<ContactUsProps> = () => {
               }`}
               placeholder="Enter your message here"
               {...register("message")}
-              // {...register("message", {
-              //   required: "Message body is required",
-              //   minLength: {
-              //     value: 15,
-              //     message: "Message must contain at least 15 characters",
-              //   },
-              // })}
             ></textarea>
             {errors.message && (
               <label className="label">

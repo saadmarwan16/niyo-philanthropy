@@ -38,3 +38,10 @@ export interface IAuthContext {
   user: AuthModel | null;
   setUser: (user: AuthModel | null) => void;
 }
+
+export interface IFooter {
+  description: string;
+  email: string;
+  phone: string;
+  address: string;
+}

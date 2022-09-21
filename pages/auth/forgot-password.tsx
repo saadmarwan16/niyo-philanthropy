@@ -23,7 +23,6 @@ const ForgotPassword: NextPage<ForgotPasswordPageProps> = ({}) => {
     resolver: yupResolver(forgotPasswordSchema),
   });
   const onSubmit: SubmitHandler<IForgotPasswordInputs> = async (data) => {
-    console.log(data);
     setIsEmailSent(true);
   };
 

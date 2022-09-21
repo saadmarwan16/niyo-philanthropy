@@ -23,7 +23,6 @@ const ResetPassword: NextPage<ResetPasswordPageProps> = ({}) => {
     resolver: yupResolver(resetPasswordSchema),
   });
   const onSubmit: SubmitHandler<IResetPasswordInputs> = async (data) => {
-    console.log(data);
     setIsPasswordResetted(true);
   };
   return (

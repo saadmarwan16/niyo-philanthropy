@@ -9,7 +9,8 @@ abstract class Routes {
   static FORGOT_PASSWORD = "/auth/forgot-password";
   static RESET_PASSWORD = "/auth/reset-password";
 
-  static CAMPAIGN_DETAILS = (slug: string) => `/campaigns/${slug}`;
+  static CAMPAIGN_DETAILS = (slug: string, id: string) =>
+    `/campaigns/${slug}/${id}`;
   static BLOG_DETAILS = (slug: string) => `/blog/${slug}`;
   static USER_PROFILE = (username: string) => `/profile/${username}`;
 }

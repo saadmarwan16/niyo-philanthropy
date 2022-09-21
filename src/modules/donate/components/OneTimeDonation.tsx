@@ -38,8 +38,7 @@ const OneTimeDonation: FunctionComponent<OneTimeDonationProps> = () => {
       amount: 10,
     },
   });
-  const onSubmit: SubmitHandler<IDonateAmountInput> = async (data) =>
-    console.log(data);
+  const onSubmit: SubmitHandler<IDonateAmountInput> = async (data) => {};
 
   const updateDonationAmount = (value: TDonationAmount) => {
     if (value !== "Other") {
