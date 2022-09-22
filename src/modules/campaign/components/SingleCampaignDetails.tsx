@@ -28,7 +28,7 @@ const SingleCampaignDetails: FunctionComponent<SingleCampaignDetailsProps> = ({
   }, [imageData.data?.attributes.url]);
 
   return (
-    <main className="">
+    <main>
       <div className="!py-8 sm:!py-12 md:!py-16 main-section">
         <div className="flex flex-col items-center w-full gap-8 mx-auto sm:gap-12 md:gap-16 sm:w-5/6 lg:w-4/6">
           <div className="flex flex-col w-full gap-2 text-center sm:gap-3 md:gap-4 sm:4/5 md:w-2/3 lg:w-3/5">
