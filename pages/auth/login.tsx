@@ -37,12 +37,11 @@ const Login: NextPage<LoginPageProps> = ({}) => {
         const { error, results } = res;
         if (error) {
           errorToast(error.name, error.message, "register");
-          return;
+        } else {
+          setUser(results);
+          reset();
+          router.push(Routes.HOME);
         }
-
-        setUser(results);
-        reset();
-        router.push(Routes.HOME);
       })
       .finally(() => setLoading(false));
   };
@@ -125,7 +124,10 @@ const Login: NextPage<LoginPageProps> = ({}) => {
                 >
                   Login
                 </button>
-                <button type={'button'} className="gap-6 normal-case btn btn-ghost btn-sm sm:btn-md">
+                <button
+                  type={"button"}
+                  className="gap-6 normal-case btn btn-ghost btn-sm sm:btn-md"
+                >
                   <FcGoogle className="text-xl" /> Login with Google
                 </button>
               </div>

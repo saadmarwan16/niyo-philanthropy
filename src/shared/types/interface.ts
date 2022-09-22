@@ -1,4 +1,4 @@
-import { AuthModel } from "../../modules/auth/data/models/AuthModel";
+import { UserModel } from "../../modules/auth/data/models/user_model";
 
 export interface IContactUsInputs {
   first_name: string;
@@ -15,6 +15,7 @@ export interface ILoginInputs {
 }
 
 export interface IRegisterInputs {
+  full_name: string;
   username: string;
   email: string;
   password: string;
@@ -35,8 +36,8 @@ export interface IDonateAmountInput {
 }
 
 export interface IAuthContext {
-  user: AuthModel | null;
-  setUser: (user: AuthModel | null) => void;
+  user: UserModel | null;
+  setUser: (user: UserModel | null) => void;
 }
 
 export interface IFooter {

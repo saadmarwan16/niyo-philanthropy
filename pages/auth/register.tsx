@@ -37,12 +37,11 @@ const Register: NextPage<RegisterPageProps> = ({}) => {
         const { error, results } = res;
         if (error) {
           errorToast(error.name, error.message, "register");
-          return;
+        } else {
+          setUser(results);
+          reset();
+          router.push(Routes.HOME);
         }
-
-        setUser(results);
-        reset();
-        router.push(Routes.HOME);
       })
       .finally(() => setLoading(false));
   };
@@ -87,6 +86,12 @@ const Register: NextPage<RegisterPageProps> = ({}) => {
             >
               <div className="flex flex-col gap-4">
                 <AuthInputField
+                  error={errors.full_name}
+                  label="Full name"
+                  placeholder="Enter your full name"
+                  register={register("full_name")}
+                />
+                <AuthInputField
                   error={errors.username}
                   label="Username"
                   placeholder="Choose your username"
@@ -120,7 +125,10 @@ const Register: NextPage<RegisterPageProps> = ({}) => {
                 >
                   Register
                 </button>
-                <button type={'button'} className="gap-6 normal-case btn btn-ghost btn-sm sm:btn-md">
+                <button
+                  type={"button"}
+                  className="gap-6 normal-case btn btn-ghost btn-sm sm:btn-md"
+                >
                   <FcGoogle className="text-xl" /> Register with Google
                 </button>
               </div>

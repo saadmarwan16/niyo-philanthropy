@@ -7,13 +7,23 @@ import SubscriptionSection from "../../src/modules/profile/components/Subscripti
 import WalletSection from "../../src/modules/profile/components/WalletSection";
 import Meta from "../../src/shared/components/Meta";
 import { TProfileTab } from "../../src/shared/types/types";
+import Avatar from "../../src/shared/components/Avatar";
+import { useAuthContext } from "../../src/modules/auth/AuthContext";
+import { useRouter } from "next/router";
+import Routes from "../../src/constants/routes";
 
 interface UserProfilePageProps {}
 
 const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
   const [currentTab, setCurrentTab] = useState<TProfileTab>("profile");
+  const { user } = useAuthContext();
+  const router = useRouter();
 
   const updateCurrentTab = (tab: TProfileTab) => setCurrentTab(tab);
+
+  if (!user) {
+    router.push(Routes.LOGIN);
+  }
 
   return (
     <div>
@@ -62,15 +72,21 @@ const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
 
           <div className="flex-col hidden gap-8 px-4 py-8 border border-gray-500 rounded-lg md:flex md:w-2/5 lg:w-2/6">
             <div className="flex flex-col items-center gap-4">
-              <div className="avatar">
-                <div className="w-32 rounded-full">
-                  <img src="https://placeimg.com/192/192/people" />
-                </div>
-              </div>
+              <Avatar
+                alt="User Profile Image"
+                url={
+                  user?.profile_image?.url
+                    ? user.profile_image.url
+                    : "/images/no_profile_image.webp"
+                }
+                width="w-32"
+              />
               <div className="text-center">
-                <p className="heading3">Full name</p>
-                <p>email</p>
-                <p className="text-sm text-primary">username</p>
+                <p className="heading3">{user?.full_name}</p>
+                <p>{user?.email}</p>
+                <p className="text-sm italic text-secondary">
+                  @{user?.username}
+                </p>
               </div>
             </div>
 

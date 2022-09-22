@@ -1,17 +1,38 @@
 import http from "../../../../shared/utils/http";
-import { ConvertAuthModel } from "../models/AuthModel";
+import { ConvertUserModel } from "../models/user_model";
 
 export class AuthProvider {
-  login = async (data: string) => {
-    const response = await http.post("/auth/local", data);
+  login = async (query: string, data: string) => {
+    const authResponse = await http.post("/auth/local", data);
+    const response = await http.get(
+      `/users/${authResponse.data.user.id}?${query}`
+    );
 
-    return ConvertAuthModel.toAuthModel(JSON.stringify(response.data));
+    return ConvertUserModel.toUserModel(
+      JSON.stringify({
+        ...response.data,
+        jwt: authResponse.data.jwt,
+      })
+    );
   };
 
-  register = async (data: string) => {
-    const response = await http.post("/auth/local/register", data);
+  register = async (query: string, data: string) => {
+    const authResponse = await http.post("/auth/local/register", data);
+    const response = await http.get(
+      `/users/${authResponse.data.user.id}?${query}`
+    );
 
-    return ConvertAuthModel.toAuthModel(JSON.stringify(response.data));
+    console.log({
+      ...response.data,
+      jwt: authResponse.data.jwt,
+    });
+
+    return ConvertUserModel.toUserModel(
+      JSON.stringify({
+        ...response.data,
+        jwt: authResponse.data.jwt,
+      })
+    );
   };
 
   loginWithGoogle = async (query: string) => {};

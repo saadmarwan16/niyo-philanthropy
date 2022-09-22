@@ -5,11 +5,11 @@ import {
   PropsWithChildren,
   useContext,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 import { IAuthContext } from "../../shared/types/interface";
-import { AuthModel, ConvertAuthModel } from "./data/models/AuthModel";
+import Encryption from "../../shared/utils/encryption";
+import { ConvertUserModel, UserModel } from "./data/models/user_model";
 
 const AuthContext = createContext<IAuthContext>({
   user: null,
@@ -21,12 +21,12 @@ export const useAuthContext = () => useContext(AuthContext);
 const AuthContextProvider: FunctionComponent<PropsWithChildren> = ({
   children,
 }) => {
-  const [user, setUser] = useState<AuthModel | null>(null);
+  const [user, setUser] = useState<UserModel | null>(null);
   const [userCookies, setUserCookies] = useState(parseCookies().user);
 
   useEffect(() => {
     if (userCookies) {
-      setUser(ConvertAuthModel.toAuthModel(userCookies));
+      setUser(ConvertUserModel.toUserModel(Encryption.decrypt(userCookies)));
     } else {
       setUser(null);
     }
@@ -37,7 +37,7 @@ const AuthContextProvider: FunctionComponent<PropsWithChildren> = ({
       value={{
         user,
         setUser: (user) => {
-          const userString = JSON.stringify(user);
+          const userString = Encryption.encrypt(JSON.stringify(user));
           setCookie(null, "user", userString, {
             maxAge: 30 * 24 * 60 * 60,
             path: "/",

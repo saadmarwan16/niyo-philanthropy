@@ -4,11 +4,15 @@ import {
   IRegisterInputs,
 } from "../../../../shared/types/interface";
 import authProvider from "../providers/AuthProvider";
+import getUserQuery from "../queries/get_user_query";
 
 export class AuthRepository {
   login = async (data: ILoginInputs) => {
     try {
-      const results = await authProvider.login(JSON.stringify(data));
+      const results = await authProvider.login(
+        this.getQuery(),
+        JSON.stringify(data)
+      );
 
       return {
         error: null,
@@ -21,7 +25,10 @@ export class AuthRepository {
 
   register = async (data: IRegisterInputs) => {
     try {
-      const results = await authProvider.register(JSON.stringify(data));
+      const results = await authProvider.register(
+        this.getQuery(),
+        JSON.stringify(data)
+      );
 
       return {
         error: null,
@@ -39,6 +46,10 @@ export class AuthRepository {
   forgotPassword = async (id: string, data: string) => {};
 
   resetPassword = async (id: string) => {};
+
+  getQuery = () => {
+    return getUserQuery();
+  };
 }
 
 const authRepository = new AuthRepository();
