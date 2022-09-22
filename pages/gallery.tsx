@@ -1,15 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import { useCallback, useState } from "react";
 import Meta from "../src/shared/components/Meta";
 import ImageViewer from "react-simple-image-viewer";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Header from "../src/shared/components/Header";
 import Image from "next/image";
+import galleryController from "../src/modules/gallery/controllers/gallery_controller";
+import { ErrorModel } from "../src/shared/errors/error_model";
+import { GalleryModel } from "../src/modules/gallery/data/models/gallery_model";
 
-interface GalleryPageProps {}
+interface GalleryPageProps {
+  error: ErrorModel | null;
+  gallery: GalleryModel | null;
+}
 
-const Gallery: NextPage<GalleryPageProps> = ({}) => {
+const Gallery: NextPage<GalleryPageProps> = (props) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const images = [
@@ -28,6 +34,8 @@ const Gallery: NextPage<GalleryPageProps> = ({}) => {
     setCurrentImage(0);
     setIsViewerOpen(false);
   };
+
+  console.log(props.gallery);
 
   return (
     <div>
@@ -80,6 +88,14 @@ const Gallery: NextPage<GalleryPageProps> = ({}) => {
       </main>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const results = await galleryController.getAll();
+
+  return {
+    props: results,
+  };
 };
 
 export default Gallery;
