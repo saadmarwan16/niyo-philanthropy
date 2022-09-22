@@ -8,10 +8,22 @@ export interface IContactUsInputs {
   message: string;
 }
 
+export interface IChangePasswordInputs {
+  currentPassword: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+export interface IProfileInputs {
+  full_name: string;
+  username: string;
+  email: string;
+  profile_image: File | null | undefined;
+}
+
 export interface ILoginInputs {
   identifier: string;
   password: string;
-  remember_me: boolean;
 }
 
 export interface IRegisterInputs {
@@ -28,7 +40,7 @@ export interface IForgotPasswordInputs {
 
 export interface IResetPasswordInputs {
   password: string;
-  confirm_password: string;
+  passwordConfirmation: string;
 }
 
 export interface IDonateAmountInput {

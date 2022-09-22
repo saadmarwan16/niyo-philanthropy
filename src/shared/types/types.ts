@@ -1,4 +1,9 @@
-export type TProfileTab = "profile" | "donations" | "subscriptions" | "wallet";
+export type TProfileTab =
+  | "profile"
+  | "passwords"
+  | "donations"
+  | "subscriptions"
+  | "wallet";
 
 export type TDonationAmount =
   | "10"

@@ -1,5 +1,5 @@
 import http from "../../../../shared/utils/http";
-import { ConvertUserModel } from "../models/user_model";
+import { ConvertUserModel, UserModel } from "../models/user_model";
 
 export class AuthProvider {
   login = async (query: string, data: string) => {
@@ -35,13 +35,32 @@ export class AuthProvider {
     );
   };
 
-  loginWithGoogle = async (query: string) => {};
+  signInWithGoogle = async (query: string) => {};
 
-  registerWithGoogle = async () => {};
+  changePassword = async (user: UserModel, data: string) => {
+    const response = await http.post("/auth/change-password", data, {
+      headers: {
+        Authorization: `Bearer ${user.jwt}`,
+      },
+    });
 
-  forgotPassword = async (id: string, data: string) => {};
+    const transformedResponse = {
+      ...user,
+      jwt: response.data.jwt,
+    };
 
-  resetPassword = async (id: string) => {};
+    return ConvertUserModel.toUserModel(JSON.stringify(transformedResponse));
+  };
+
+  updateUserInformation = async () => {};
+
+  forgotPassword = async (data: string) => {
+    await http.post("/auth/forgot-password", data);
+  };
+
+  resetPassword = async (data: string) => {
+    await http.post("/auth/reset-password", data);
+  };
 }
 
 const authProvider = new AuthProvider();

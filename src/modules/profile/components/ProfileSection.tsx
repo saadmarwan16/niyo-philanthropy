@@ -1,76 +1,72 @@
 import { FunctionComponent } from "react";
 import ProfileHeading from "./ProfileHeading";
-import { object, number } from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { IProfileInputs } from "../../../shared/types/interface";
+import { useAuthContext } from "../../auth/AuthContext";
+import InputField from "../../../shared/components/InputField";
+import profileUpdataSchema from "../../../constants/schemas/profile_update_schema";
+import { getDateMMMDDYYYY } from "../../../shared/utils/getFormatedDates";
 
 interface ProfileSectionProps {}
 
-interface IProfileInputs {
-  name: string;
-  phone_number: string;
-}
-
 const ProfileSection: FunctionComponent<ProfileSectionProps> = () => {
+  const { user } = useAuthContext();
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<IProfileInputs>({
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(profileUpdataSchema),
     defaultValues: {
-      // amount: 10,
+      full_name: user?.full_name,
+      email: user?.email,
+      username: user?.username,
     },
   });
-  const onSubmit: SubmitHandler<IProfileInputs> = async (data) => {};
+
+  const onSubmit: SubmitHandler<IProfileInputs> = async (data) => {
+    console.log(data);
+  };
 
   return (
     <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex items-center justify-between">
-        <ProfileHeading title="Profile" description="Joined on Sep, 01, 2022" />
-        <button className="custom-btn-secondary !btn-sm">Save</button>
+        <ProfileHeading title="Profile" description={`Joined on ${getDateMMMDDYYYY(user?.createdAt)}`} />
+        <button
+          className={`custom-btn-secondary !btn-sm ${
+            !isDirty && "!btn-disabled"
+          }`}
+        >
+          Save
+        </button>
       </div>
 
-      <div className="w-full form-control">
-        <label className="label">
-          <span className="font-semibold label-text">Full name</span>
-        </label>
-
-        <input
-          type={"text"}
+      <div className="flex flex-col gap-3">
+        <InputField
+          error={errors.full_name}
+          isOptional={false}
           placeholder="Enter your name here"
-          className={`custom-input !max-w-md`}
-          // className={`custom-input ${error?.message && "!border-error"}`}
-          {...register("name")}
+          register={register("full_name")}
+          title="Full name"
+          type="text"
         />
-
-        {/* {error && (
-        <label className="label">
-          <span className="label-text-alt text-error">{error.message}</span>
-        </label>
-      )} */}
-      </div>
-
-      <div className="w-full form-control">
-        <label className="label">
-          <span className="font-semibold label-text">Phone number</span>
-        </label>
-
-        <input
-          type={"text"}
-          placeholder="Enter your phone number here"
-          className={`custom-input !max-w-md`}
-          // className={`custom-input ${error?.message && "!border-error"}`}
-          {...register("phone_number")}
+        <InputField
+          error={errors.username}
+          isOptional={false}
+          placeholder="Enter your username here"
+          register={register("username")}
+          title="Username"
+          type="text"
         />
-
-        {/* {error && (
-        <label className="label">
-          <span className="label-text-alt text-error">{error.message}</span>
-        </label>
-      )} */}
+        <InputField
+          error={errors.email}
+          isOptional={false}
+          placeholder="Enter your email address here"
+          register={register("email")}
+          title="Email"
+          type="text"
+        />
       </div>
     </form>
   );

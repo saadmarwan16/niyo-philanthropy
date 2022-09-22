@@ -11,6 +11,8 @@ import Avatar from "../../src/shared/components/Avatar";
 import { useAuthContext } from "../../src/modules/auth/AuthContext";
 import { useRouter } from "next/router";
 import Routes from "../../src/constants/routes";
+import { BASE_URL } from "../../src/constants/urls";
+import PasswordSection from "../../src/modules/profile/components/PasswordSection";
 
 interface UserProfilePageProps {}
 
@@ -21,9 +23,9 @@ const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
 
   const updateCurrentTab = (tab: TProfileTab) => setCurrentTab(tab);
 
-  if (!user) {
-    router.push(Routes.LOGIN);
-  }
+  // if (!user && typeof window !== "undefined") {
+  //   router.push(Routes.LOGIN);
+  // }
 
   return (
     <div>
@@ -43,6 +45,14 @@ const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
               }`}
             >
               Profile
+            </a>
+            <a
+              onClick={() => updateCurrentTab("passwords")}
+              className={`tab tab-bordered ${
+                currentTab === "passwords" && "tab-active"
+              }`}
+            >
+              Change Password
             </a>
             <a
               onClick={() => updateCurrentTab("donations")}
@@ -76,7 +86,7 @@ const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
                 alt="User Profile Image"
                 url={
                   user?.profile_image?.url
-                    ? user.profile_image.url
+                    ? `${BASE_URL}${user.profile_image.url}`
                     : "/images/no_profile_image.webp"
                 }
                 width="w-32"
@@ -93,6 +103,11 @@ const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
             <ul className="w-full menu bg-base-100">
               <li className={`${currentTab === "profile" && "bordered"}`}>
                 <a onClick={() => updateCurrentTab("profile")}>Profile</a>
+              </li>
+              <li className={`${currentTab === "passwords" && "bordered"}`}>
+                <a onClick={() => updateCurrentTab("passwords")}>
+                  Change Password
+                </a>
               </li>
               <li className={`${currentTab === "donations" && "bordered"}`}>
                 <a onClick={() => updateCurrentTab("donations")}>
@@ -112,6 +127,8 @@ const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
 
           <div className="w-full md:w-3/5 lg:w-4/6">
             {currentTab === "profile" && <ProfileSection />}
+
+            {currentTab === "passwords" && <PasswordSection />}
 
             {currentTab === "donations" && <DonationSection />}
 

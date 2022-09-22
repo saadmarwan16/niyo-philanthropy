@@ -98,8 +98,9 @@ const Login: NextPage<LoginPageProps> = ({}) => {
                   placeholder="Enter your password"
                   register={register("password")}
                 />
-                <div className="flex flex-wrap items-center justify-between">
-                  <div className="form-control">
+                <div className="flex flex-wrap items-center justify-end">
+                {/* <div className="flex flex-wrap items-center justify-between"> */}
+                  {/* <div className="form-control">
                     <label className="cursor-pointer label !justify-start gap-3">
                       <input
                         type="checkbox"
@@ -108,7 +109,7 @@ const Login: NextPage<LoginPageProps> = ({}) => {
                       />
                       <span className="label-text">Remember me</span>
                     </label>
-                  </div>
+                  </div> */}
 
                   <Link href={Routes.FORGOT_PASSWORD}>
                     <a className="text-sm text-blue-500 hover:text-blue-800">

@@ -1,8 +1,13 @@
+import { SUCCESS } from "../../../../constants/strings";
 import handleError from "../../../../shared/errors/handleError";
 import {
+  IChangePasswordInputs,
+  IForgotPasswordInputs,
   ILoginInputs,
   IRegisterInputs,
+  IResetPasswordInputs,
 } from "../../../../shared/types/interface";
+import { UserModel } from "../models/user_model";
 import authProvider from "../providers/AuthProvider";
 import getUserQuery from "../queries/get_user_query";
 
@@ -39,13 +44,42 @@ export class AuthRepository {
     }
   };
 
-  loginWithGoogle = async (query: string) => {};
+  signInWithGoogle = async (query: string) => {};
 
-  registerWithGoogle = async () => {};
+  changePassword = async (user: UserModel, data: IChangePasswordInputs) => {
+    try {
+      const results = await authProvider.changePassword(
+        user,
+        JSON.stringify(data)
+      );
 
-  forgotPassword = async (id: string, data: string) => {};
+      return { error: null, results };
+    } catch (err) {
+      return handleError(err);
+    }
+  };
 
-  resetPassword = async (id: string) => {};
+  updateUserInformation = async () => {};
+
+  forgotPassword = async (data: IForgotPasswordInputs) => {
+    try {
+      await authProvider.forgotPassword(JSON.stringify(data));
+
+      return { error: null, results: SUCCESS };
+    } catch (err) {
+      return handleError(err);
+    }
+  };
+
+  resetPassword = async (data: IResetPasswordInputs) => {
+    try {
+      await authProvider.resetPassword(JSON.stringify(data));
+
+      return { error: null, results: SUCCESS };
+    } catch (err) {
+      return handleError(err);
+    }
+  };
 
   getQuery = () => {
     return getUserQuery();

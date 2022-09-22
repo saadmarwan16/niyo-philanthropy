@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Meta from "../../src/shared/components/Meta";
 import Image from "next/image";
 import Routes from "../../src/constants/routes";
@@ -7,14 +7,23 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import AuthInputField from "../../src/modules/auth/components/AuthInputField";
 import { IResetPasswordInputs } from "../../src/shared/types/interface";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { GiHouseKeys } from "react-icons/gi";
 import resetPasswordSchema from "../../src/constants/schemas/reset_password_schema";
+import { useRouter } from "next/router";
+import authRepository from "../../src/modules/auth/data/repositories/AuthRepository";
+import errorToast from "../../src/shared/utils/errorToast";
 
 interface ResetPasswordPageProps {}
 
 const ResetPassword: NextPage<ResetPasswordPageProps> = ({}) => {
   const [isPasswordResetted, setIsPasswordResetted] = useState(false);
+  const router = useRouter();
+  const code = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return router.query.code as string;
+    }
+  }, [router.query.code]);
   const {
     register,
     handleSubmit,
@@ -22,9 +31,23 @@ const ResetPassword: NextPage<ResetPasswordPageProps> = ({}) => {
   } = useForm<IResetPasswordInputs>({
     resolver: yupResolver(resetPasswordSchema),
   });
+
   const onSubmit: SubmitHandler<IResetPasswordInputs> = async (data) => {
-    setIsPasswordResetted(true);
+    const transformedData = {
+      ...data,
+      code,
+    };
+
+    authRepository.resetPassword(transformedData).then((res) => {
+      const { error } = res;
+      if (error) {
+        errorToast(error.name, error.message, "reset-password");
+      } else {
+        setIsPasswordResetted(true);
+      }
+    });
   };
+
   return (
     <div>
       <Meta titlePrefix="Reset Password" />
@@ -92,10 +115,10 @@ const ResetPassword: NextPage<ResetPasswordPageProps> = ({}) => {
                   />
                   <AuthInputField
                     type="password"
-                    error={errors.confirm_password}
+                    error={errors.passwordConfirmation}
                     label="Confirm password"
                     placeholder="Enter your password again"
-                    register={register("confirm_password")}
+                    register={register("passwordConfirmation")}
                   />
                 </div>
                 <div className="flex flex-col gap-4">
@@ -116,6 +139,14 @@ const ResetPassword: NextPage<ResetPasswordPageProps> = ({}) => {
       </div>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  console.log(params);
+
+  return {
+    props: {},
+  };
 };
 
 export default ResetPassword;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FunctionComponent } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Routes from "../../constants/routes";
+import { BASE_URL } from "../../constants/urls";
 import { useAuthContext } from "../../modules/auth/AuthContext";
 import Avatar from "./Avatar";
 import Logo from "./Logo";
@@ -33,10 +34,10 @@ const Header: FunctionComponent<HeaderProps> = () => {
                 <Avatar
                   url={
                     user.profile_image?.url
-                      ? user.profile_image.url
+                      ? `${BASE_URL}${user.profile_image.url}`
                       : "/images/no_profile_image.webp"
                   }
-                  width="w-16"
+                  width="w-12"
                   alt="User Profile Image"
                 />
 
