@@ -52,7 +52,22 @@ export class AuthProvider {
     return ConvertUserModel.toUserModel(JSON.stringify(transformedResponse));
   };
 
-  updateUserInformation = async () => {};
+  updateUserInformation = async (user: UserModel, data: string) => {
+    const response = await http.put("/users-permissions/users/me", data, {
+      headers: {
+        Authorization: `Bearer ${user.jwt}`,
+      },
+    });
+
+    const transformedResponse = {
+      ...response.data,
+      jwt: user.jwt,
+      role: user.role,
+      profile_image: user.profile_image,
+    };
+
+    return ConvertUserModel.toUserModel(JSON.stringify(transformedResponse));
+  };
 
   forgotPassword = async (data: string) => {
     await http.post("/auth/forgot-password", data);

@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import ProfileHeading from "./ProfileHeading";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -7,11 +7,15 @@ import { useAuthContext } from "../../auth/AuthContext";
 import InputField from "../../../shared/components/InputField";
 import profileUpdataSchema from "../../../constants/schemas/profile_update_schema";
 import { getDateMMMDDYYYY } from "../../../shared/utils/getFormatedDates";
+import authRepository from "../../auth/data/repositories/AuthRepository";
+import errorToast from "../../../shared/utils/errorToast";
+import successToast from "../../../shared/utils/successToast";
 
 interface ProfileSectionProps {}
 
 const ProfileSection: FunctionComponent<ProfileSectionProps> = () => {
-  const { user } = useAuthContext();
+  const [isUpdating, setIsUpdating] = useState(false);
+  const { user, setUser } = useAuthContext();
   const {
     register,
     handleSubmit,
@@ -27,16 +31,38 @@ const ProfileSection: FunctionComponent<ProfileSectionProps> = () => {
 
   const onSubmit: SubmitHandler<IProfileInputs> = async (data) => {
     console.log(data);
+    if (user) {
+      setIsUpdating(true);
+      authRepository
+        .updateUserInformation(user, data)
+        .then((res) => {
+          const { error, results } = res;
+          if (error) {
+            errorToast(error.name, error.message, "update-user-data");
+          } else {
+            setUser(results);
+            successToast(
+              "Update user",
+              "Your user data has been updated successfully",
+              "update-user-data"
+            );
+          }
+        })
+        .finally(() => setIsUpdating(false));
+    }
   };
 
   return (
     <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex items-center justify-between">
-        <ProfileHeading title="Profile" description={`Joined on ${getDateMMMDDYYYY(user?.createdAt)}`} />
+        <ProfileHeading
+          title="Profile"
+          description={`Joined on ${getDateMMMDDYYYY(user?.createdAt)}`}
+        />
         <button
           className={`custom-btn-secondary !btn-sm ${
             !isDirty && "!btn-disabled"
-          }`}
+          } ${isUpdating && "loading"}`}
         >
           Save
         </button>

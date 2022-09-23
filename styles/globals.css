@@ -152,3 +152,90 @@ html {
 .blog-campaign-horizontal-padding {
   @apply px-6 sm:px-8 md:px-12;
 }
+
+.image-container {
+  height: auto;
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.fade::after {
+  content: "";
+  background: black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 400ms ease-in-out;
+}
+
+.fade:hover::after {
+  opacity: 0.5;
+}
+
+.side-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  background: #fff;
+}
+
+.toggle-btn {
+  outline: none;
+  border: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+  position: absolute;
+  top: 18px;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-nav-items,
+.mobile-nav-items > li {
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav-items {
+  padding: 25px;
+  position: absolute;
+  top: 100px;
+  width: 100%;
+}
+
+.mobile-nav-items > li {
+  list-style: none;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}

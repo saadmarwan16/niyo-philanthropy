@@ -9,6 +9,7 @@ export interface UserModel {
   username: string;
   email: string;
   jwt: string;
+  wallet_balance: number;
   provider: string;
   confirmed: boolean;
   blocked: boolean;

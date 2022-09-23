@@ -25,7 +25,7 @@ export interface PurpleAttributes {
 }
 
 export interface Footer {
-  data: FooterData;
+  data: FooterData | null;
 }
 
 export interface FooterData {

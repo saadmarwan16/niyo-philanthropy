@@ -4,6 +4,7 @@ import {
   IChangePasswordInputs,
   IForgotPasswordInputs,
   ILoginInputs,
+  IProfileInputs,
   IRegisterInputs,
   IResetPasswordInputs,
 } from "../../../../shared/types/interface";
@@ -59,7 +60,18 @@ export class AuthRepository {
     }
   };
 
-  updateUserInformation = async () => {};
+  updateUserInformation = async (user: UserModel, data: IProfileInputs) => {
+    try {
+      const results = await authProvider.updateUserInformation(
+        user,
+        JSON.stringify(data)
+      );
+
+      return { error: null, results };
+    } catch (err) {
+      return handleError(err);
+    }
+  };
 
   forgotPassword = async (data: IForgotPasswordInputs) => {
     try {

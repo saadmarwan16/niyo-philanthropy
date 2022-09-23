@@ -18,7 +18,6 @@ export interface IProfileInputs {
   full_name: string;
   username: string;
   email: string;
-  profile_image: File | null | undefined;
 }
 
 export interface ILoginInputs {
@@ -57,4 +56,16 @@ export interface IFooter {
   email: string;
   phone: string;
   address: string;
+}
+
+export interface IImagesObj {
+  index: number;
+  title: string;
+  url: string;
+}
+
+export interface INavItem {
+  id: number;
+  title: string;
+  route: string;
 }
