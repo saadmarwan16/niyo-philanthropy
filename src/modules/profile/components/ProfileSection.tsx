@@ -68,7 +68,7 @@ const ProfileSection: FunctionComponent<ProfileSectionProps> = () => {
         </button>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col w-full gap-3 md:w-4/5 lg:w-2/3">
         <InputField
           error={errors.full_name}
           isOptional={false}

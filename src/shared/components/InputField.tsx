@@ -8,6 +8,8 @@ interface InputFieldProps {
   type: string;
   register: UseFormRegisterReturn;
   error: FieldError | undefined;
+  isDisabled?: boolean;
+  step?: number;
 }
 
 const InputField: FunctionComponent<InputFieldProps> = ({
@@ -17,6 +19,8 @@ const InputField: FunctionComponent<InputFieldProps> = ({
   type,
   register,
   error,
+  isDisabled,
+  step,
 }) => {
   return (
     <div className="w-full form-control">
@@ -33,9 +37,11 @@ const InputField: FunctionComponent<InputFieldProps> = ({
 
       <input
         type={type}
+        step={step}
         placeholder={placeholder}
-        className={`custom-input ${error?.message && '!border-error'}`}
+        className={`custom-input ${error?.message && "!border-error"}`}
         {...register}
+        disabled={isDisabled}
       />
 
       {error && (

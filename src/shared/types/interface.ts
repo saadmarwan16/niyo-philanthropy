@@ -1,4 +1,9 @@
 import { UserModel } from "../../modules/auth/data/models/user_model";
+import {
+  TCheckoutMode,
+  TCheckoutRecurringInterval,
+  TCheckoutSubmitType,
+} from "./types";
 
 export interface IContactUsInputs {
   first_name: string;
@@ -68,4 +73,25 @@ export interface INavItem {
   id: number;
   title: string;
   route: string;
+}
+
+interface ICheckoutRecurring {
+  interval: TCheckoutRecurringInterval;
+  interval_count: number;
+}
+
+export interface ICreateCheckout {
+  name: string;
+  description: string;
+  amount: number;
+  email: string;
+  mode: TCheckoutMode;
+  submit_type: TCheckoutSubmitType;
+  recurring?: ICheckoutRecurring;
+  image_url: string;
+}
+
+export interface IWalletTopUp {
+  email: string;
+  amount: number;
 }

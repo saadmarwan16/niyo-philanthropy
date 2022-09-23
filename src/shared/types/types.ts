@@ -14,3 +14,9 @@ export type TDonationAmount =
   | "500"
   | "1000"
   | "Other";
+
+export type TCheckoutMode = "payment" | "subscription";
+
+export type TCheckoutSubmitType = "auto" | "pay" | "book" | "donate";
+
+export type TCheckoutRecurringInterval = "day" | "week" | "month" | "year";
