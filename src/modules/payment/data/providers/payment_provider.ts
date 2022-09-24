@@ -1,4 +1,5 @@
 import http from "../../../../shared/utils/http";
+import { ConvertCheckoutSessionModel } from "../models/checkout_session_model";
 
 export class PaymentProvider {
   createWalletCheckout = async (token: string, data: string) => {
@@ -11,7 +12,17 @@ export class PaymentProvider {
     return response.data.id as string;
   };
 
-  confirmWalletCheckout = async (id: string) => {};
+  confirmWalletCheckout = async (token: string, data: string) => {
+    const response = await http.post("/confirm-wallet-topup-session", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return ConvertCheckoutSessionModel.toCheckoutSessionModel(
+      JSON.stringify(response.data)
+    );
+  };
 
   createDonationCheckout = async (query: string) => {};
 

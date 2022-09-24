@@ -4,6 +4,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Routes from "../../constants/routes";
 import { BASE_URL } from "../../constants/urls";
 import { useAuthContext } from "../../modules/auth/AuthContext";
+import { useDrawerContext } from "../contexts/DrawerContext";
 import AnimatableHamburger from "./AnimatableHamburger";
 import Avatar from "./Avatar";
 import Logo from "./Logo";
@@ -13,10 +14,12 @@ interface HeaderProps {}
 
 const Header: FunctionComponent<HeaderProps> = () => {
   const { user } = useAuthContext();
+  const { toggleDrawer } = useDrawerContext();
   return (
     <header>
       <div className="flex items-center justify-end h-[70px] md:hidden">
-        <AnimatableHamburger />
+        {/* <AnimatableHamburger /> */}
+        <button onClick={toggleDrawer}>Some Button</button>
 
         <Logo />
       </div>

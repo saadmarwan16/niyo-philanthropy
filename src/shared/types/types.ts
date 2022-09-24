@@ -20,3 +20,5 @@ export type TCheckoutMode = "payment" | "subscription";
 export type TCheckoutSubmitType = "auto" | "pay" | "book" | "donate";
 
 export type TCheckoutRecurringInterval = "day" | "week" | "month" | "year";
+
+export type TPaymentType = "wallet" | "once" | "subscription";

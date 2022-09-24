@@ -3,6 +3,7 @@ import {
   TCheckoutMode,
   TCheckoutRecurringInterval,
   TCheckoutSubmitType,
+  TPaymentType,
 } from "./types";
 
 export interface IContactUsInputs {
@@ -56,6 +57,10 @@ export interface IAuthContext {
   setUser: (user: UserModel | null) => void;
 }
 
+export interface IDrawerContext {
+  toggleDrawer: () => void;
+}
+
 export interface IFooter {
   description: string;
   email: string;
@@ -89,6 +94,7 @@ export interface ICreateCheckout {
   submit_type: TCheckoutSubmitType;
   recurring?: ICheckoutRecurring;
   image_url: string;
+  payment_type: TPaymentType;
 }
 
 export interface IWalletTopUp {

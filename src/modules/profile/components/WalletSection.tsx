@@ -44,7 +44,7 @@ const WalletSection: FunctionComponent<WalletSectionProps> = () => {
           })
           .catch(() => {
             const error = getUnexpectedError();
-            errorToast(error.name, error.message, "change-password");
+            errorToast(error.name, error.message, "top-up");
           })
           .finally(() => {
             setIsLoading(false);
@@ -52,7 +52,7 @@ const WalletSection: FunctionComponent<WalletSectionProps> = () => {
       }
     } else {
       const error = getUnexpectedError();
-      errorToast(error.name, error.message, "change-password");
+      errorToast(error.name, error.message, "top-up");
     }
   };
 
