@@ -5,7 +5,6 @@ import Routes from "../../constants/routes";
 import { BASE_URL } from "../../constants/urls";
 import { useAuthContext } from "../../modules/auth/AuthContext";
 import { useDrawerContext } from "../contexts/DrawerContext";
-import AnimatableHamburger from "./AnimatableHamburger";
 import Avatar from "./Avatar";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
@@ -17,9 +16,11 @@ const Header: FunctionComponent<HeaderProps> = () => {
   const { toggleDrawer } = useDrawerContext();
   return (
     <header>
-      <div className="flex items-center justify-end h-[70px] md:hidden">
-        {/* <AnimatableHamburger /> */}
-        <button onClick={toggleDrawer}>Some Button</button>
+      <div className="flex items-center justify-between md:hidden">
+        <GiHamburgerMenu
+          className="text-3xl cursor-pointer"
+          onClick={toggleDrawer}
+        />
 
         <Logo />
       </div>

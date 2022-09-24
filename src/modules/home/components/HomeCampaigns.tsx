@@ -87,7 +87,12 @@ const HomeCampaigns: FunctionComponent<HomeCampaignsProps> = ({
               </span>
             </div>
             <div className="gap-2 sm:gap-3 card-body">
-              <Link href={Routes.CAMPAIGN_DETAILS("this is the title")}>
+              <Link
+                href={Routes.CAMPAIGN_DETAILS(
+                  campaign.attributes.slug,
+                  campaign.id.toString()
+                )}
+              >
                 <a className="hover:text-primary">
                   <h2 className="heading2 !font-medium line-clamp-1">
                     {campaign.attributes.title}

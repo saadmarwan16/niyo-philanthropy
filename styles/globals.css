@@ -43,6 +43,10 @@ html {
   @apply normal-case rounded-lg btn btn-accent btn-sm sm:btn-md;
 }
 
+.hide-drawer {
+  background: black;
+}
+
 .custom-btn-accent-outline {
   @apply normal-case rounded-lg btn btn-accent btn-outline btn-sm sm:btn-md;
 }

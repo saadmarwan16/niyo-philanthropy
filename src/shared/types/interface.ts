@@ -75,7 +75,7 @@ export interface IImagesObj {
 }
 
 export interface INavItem {
-  id: number;
+  icon: JSX.Element,
   title: string;
   route: string;
 }

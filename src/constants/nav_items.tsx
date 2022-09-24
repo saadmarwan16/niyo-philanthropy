@@ -1,24 +1,28 @@
 import { INavItem } from "../shared/types/interface";
 import Routes from "./routes";
+import { GrGallery } from "react-icons/gr";
+import { MdOutlineCampaign } from "react-icons/md";
+import { BiDonateHeart } from "react-icons/bi";
+import { RiArticleLine } from "react-icons/ri";
 
 const navItems: INavItem[] = [
   {
-    id: 0,
+    icon: <MdOutlineCampaign />,
     title: "Campaigns",
     route: Routes.CAMPAIGNS,
   },
   {
-    id: 1,
+    icon: <GrGallery />,
     title: "Gallery",
     route: Routes.GALLERY,
   },
   {
-    id: 2,
+    icon: <BiDonateHeart />,
     title: "Donate",
     route: Routes.DONATE,
   },
   {
-    id: 3,
+    icon: <RiArticleLine />,
     title: "Blog",
     route: Routes.BLOG,
   },

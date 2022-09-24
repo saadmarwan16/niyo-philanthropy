@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import { useState } from "react";
 import Header from "../../src/shared/components/Header";
 import DonationSection from "../../src/modules/profile/components/DonationSection";
@@ -9,23 +9,18 @@ import Meta from "../../src/shared/components/Meta";
 import { TProfileTab } from "../../src/shared/types/types";
 import Avatar from "../../src/shared/components/Avatar";
 import { useAuthContext } from "../../src/modules/auth/AuthContext";
-import { useRouter } from "next/router";
-import Routes from "../../src/constants/routes";
 import { BASE_URL } from "../../src/constants/urls";
 import PasswordSection from "../../src/modules/profile/components/PasswordSection";
+import validateServerUser from "../../src/shared/utils/validateServerUser";
+import profileRepository from "../../src/modules/profile/data/repositories/profile_repository";
 
 interface UserProfilePageProps {}
 
 const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
   const [currentTab, setCurrentTab] = useState<TProfileTab>("profile");
   const { user } = useAuthContext();
-  const router = useRouter();
 
   const updateCurrentTab = (tab: TProfileTab) => setCurrentTab(tab);
-
-  // if (!user && typeof window !== "undefined") {
-  //   router.push(Routes.LOGIN);
-  // }
 
   return (
     <div>
@@ -36,7 +31,7 @@ const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
           <Header />
         </div>
 
-        <main className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 md:flex-row profile-section-horizontal-padding">
+        <main className="flex flex-col gap-6 pb-8 md:pb-12 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 md:flex-row profile-section-horizontal-padding">
           <div className="tabs md:hidden">
             <a
               onClick={() => updateCurrentTab("profile")}
@@ -140,6 +135,20 @@ const UserProfile: NextPage<UserProfilePageProps> = ({}) => {
       </div>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = (ctx) => {
+  return validateServerUser(ctx, async (token: string) => {
+    const id = ctx.query.id as string;
+    const results = await profileRepository.getOne("1", token);
+
+    return {
+      props: {
+        id,
+        ...results,
+      },
+    };
+  });
 };
 
 export default UserProfile;
