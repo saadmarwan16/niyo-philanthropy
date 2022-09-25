@@ -49,6 +49,7 @@ export interface IResetPasswordInputs {
 }
 
 export interface IDonateAmountInput {
+  email: string;
   amount: number;
 }
 
@@ -75,7 +76,7 @@ export interface IImagesObj {
 }
 
 export interface INavItem {
-  icon: JSX.Element,
+  icon: JSX.Element;
   title: string;
   route: string;
 }
@@ -85,7 +86,7 @@ interface ICheckoutRecurring {
   interval_count: number;
 }
 
-export interface ICreateCheckout {
+export interface ICreateWalletCheckout {
   name: string;
   description: string;
   amount: number;
@@ -95,6 +96,19 @@ export interface ICreateCheckout {
   recurring?: ICheckoutRecurring;
   image_url: string;
   payment_type: TPaymentType;
+}
+
+export interface ICreateCheckout {
+  name: string;
+  description: string;
+  amount: number;
+  email: string;
+  mode: TCheckoutMode;
+  submit_type: TCheckoutSubmitType;
+  image_url: string;
+  payment_type: TPaymentType;
+  campaign: number;
+  donor?: number;
 }
 
 export interface IWalletTopUp {
