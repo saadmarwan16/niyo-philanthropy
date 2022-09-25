@@ -6,13 +6,16 @@ import { BeatLoader } from "react-spinners";
 import { MdOutlineCancel } from "react-icons/md";
 import Link from "next/link";
 import Routes from "../src/constants/routes";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { ErrorModel } from "../src/shared/errors/error_model";
-import { useRouter } from "next/router";
 import paymentRepository from "../src/modules/payment/data/repositories/payment_repository";
 import { useAuthContext } from "../src/modules/auth/AuthContext";
 import errorToast from "../src/shared/utils/errorToast";
 import { TPaymentType } from "../src/shared/types/types";
+import profileRepository from "../src/modules/profile/data/repositories/profile_repository";
+import nookies from "nookies";
+import { ConvertUserModel } from "../src/modules/auth/data/models/user_model";
+import Encryption from "../src/shared/utils/encryption";
 
 interface PaymentSuccessPageProps {
   checkout_session: string;
@@ -29,7 +32,7 @@ const PaymentSuccess: NextPage<PaymentSuccessPageProps> = (props) => {
   const { user, setUser } = useAuthContext();
 
   const retryConfirmation = async () => {
-    if (props.payment_type === "once") {
+    if (props.payment_type === "donation") {
       setIsLoading(true);
       const results = await paymentRepository.confirmDonationCheckout(
         props.checkout_session
@@ -108,12 +111,21 @@ const PaymentSuccess: NextPage<PaymentSuccessPageProps> = (props) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const checkout_session = query.checkout_session as string;
-  const payment_type = query.payment_type as TPaymentType;
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const checkout_session = ctx.query.checkout_session as string;
+  const payment_type = ctx.query.payment_type as TPaymentType;
   let results;
-  if (payment_type === "once") {
+  if (payment_type === "donation") {
     results = await paymentRepository.confirmDonationCheckout(checkout_session);
+  }
+
+  if (payment_type === "wallet") {
+    const userString = nookies.get(ctx).user;
+
+    const user = ConvertUserModel.toUserModel(Encryption.decrypt(userString));
+    results = await profileRepository.confirmWalletCheckout(user.jwt, {
+      checkout_session,
+    });
   }
 
   return {

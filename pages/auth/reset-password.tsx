@@ -142,8 +142,6 @@ const ResetPassword: NextPage<ResetPasswordPageProps> = ({}) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  console.log(params);
-
   return {
     props: {},
   };

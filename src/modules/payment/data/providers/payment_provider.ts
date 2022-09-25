@@ -35,10 +35,6 @@ export class PaymentProvider {
 
     return response.data;
   };
-
-  createSubscriptionCheckout = async (id: string, data: string) => {};
-
-  confirmSubscriptionCheckout = async (id: string) => {};
 }
 
 const paymentProvider = new PaymentProvider();

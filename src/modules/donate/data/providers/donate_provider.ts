@@ -5,7 +5,6 @@ export class DonateProvider {
   create = async (data: string) => {};
 
   getPage = async (query: string) => {
-    console.log(query);
     const response = await http.get(`/donate?${query}`);
 
     return ConvertDonatePageModel.toDonatePageModel(

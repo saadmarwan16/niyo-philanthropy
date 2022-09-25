@@ -8,12 +8,14 @@ import { IWalletTopUp } from "../../../shared/types/interface";
 import errorToast from "../../../shared/utils/errorToast";
 import stripe from "../../../shared/utils/stripe";
 import { useAuthContext } from "../../auth/AuthContext";
-import paymentRepository from "../../payment/data/repositories/payment_repository";
+import profileRepository from "../data/repositories/profile_repository";
 import ProfileHeading from "./ProfileHeading";
 
-interface WalletSectionProps {}
+interface WalletSectionProps {
+  wallet_balance: number;
+}
 
-const WalletSection: FunctionComponent<WalletSectionProps> = () => {
+const WalletSection: FunctionComponent<WalletSectionProps> = ({wallet_balance}) => {
   const [shouldShowForm, setShouldShowForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuthContext();
@@ -29,10 +31,11 @@ const WalletSection: FunctionComponent<WalletSectionProps> = () => {
   const onSubmit: SubmitHandler<IWalletTopUp> = async (data) => {
     if (user) {
       setIsLoading(true);
-      const { error, results } = await paymentRepository.createWalletCheckout(
+      const { error, results } = await profileRepository.createWalletCheckout(
         user.jwt,
         data
       );
+      setIsLoading(false);
       if (error) {
         errorToast(error.name, error.name, "top-up");
       } else {
@@ -43,11 +46,11 @@ const WalletSection: FunctionComponent<WalletSectionProps> = () => {
             });
           })
           .catch(() => {
-            const error = getUnexpectedError();
-            errorToast(error.name, error.message, "top-up");
-          })
-          .finally(() => {
-            setIsLoading(false);
+            errorToast(
+              "Payment error",
+              "An unexpected payment error occured. Please check your internet and then consider reloading the page.",
+              "top-up"
+            );
           });
       }
     } else {
@@ -65,7 +68,7 @@ const WalletSection: FunctionComponent<WalletSectionProps> = () => {
       <div>
         <p className="text-gray-500">Account Balance:</p>
         <h3 className="heading3">
-          ${user?.wallet_balance?.toFixed(2) ?? "NaN"}
+          ${wallet_balance.toFixed(2)}
         </h3>
       </div>
       <button

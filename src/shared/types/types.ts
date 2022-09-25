@@ -1,9 +1,4 @@
-export type TProfileTab =
-  | "profile"
-  | "passwords"
-  | "donations"
-  | "subscriptions"
-  | "wallet";
+export type TProfileTab = "profile" | "passwords" | "donations" | "wallet";
 
 export type TDonationAmount =
   | "10"
@@ -15,10 +10,6 @@ export type TDonationAmount =
   | "1000"
   | "Other";
 
-export type TCheckoutMode = "payment" | "subscription";
-
 export type TCheckoutSubmitType = "auto" | "pay" | "book" | "donate";
 
-export type TCheckoutRecurringInterval = "day" | "week" | "month" | "year";
-
-export type TPaymentType = "wallet" | "once" | "subscription";
+export type TPaymentType = "wallet" | "donation";

@@ -22,11 +22,6 @@ export class AuthProvider {
       `/users/${authResponse.data.user.id}?${query}`
     );
 
-    console.log({
-      ...response.data,
-      jwt: authResponse.data.jwt,
-    });
-
     return ConvertUserModel.toUserModel(
       JSON.stringify({
         ...response.data,

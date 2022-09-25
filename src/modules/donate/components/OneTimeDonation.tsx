@@ -57,15 +57,13 @@ const OneTimeDonation: FunctionComponent<OneTimeDonationProps> = () => {
         "The donations you make can bring about big changes to the lives of others. THANK YOU for support",
       amount: data.amount,
       email: data.email,
-      mode: "payment",
       submit_type: "donate",
-      payment_type: "once",
+      payment_type: "donation",
       image_url:
         "https://res.cloudinary.com/dp4gyhksm/image/upload/v1661092230/large_image4_d374ac602d.jpg",
       donor: user?.id,
       campaign: 1,
     };
-    console.log(data);
     setIsLoading(true);
     const { error, results } = await paymentRepository.createDonationCheckout(
       checkoutData
@@ -92,7 +90,7 @@ const OneTimeDonation: FunctionComponent<OneTimeDonationProps> = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <div className="w-full form-control">
           <label className="label">
             <span className="font-semibold label-text">Email</span>
@@ -118,7 +116,7 @@ const OneTimeDonation: FunctionComponent<OneTimeDonationProps> = () => {
           {amounts.map((amount, index) => (
             <button
               key={index}
-              type={'button'}
+              type={"button"}
               className={
                 donationAmount === amount
                   ? "custom-btn-secondary"

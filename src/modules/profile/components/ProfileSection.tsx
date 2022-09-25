@@ -30,7 +30,6 @@ const ProfileSection: FunctionComponent<ProfileSectionProps> = () => {
   });
 
   const onSubmit: SubmitHandler<IProfileInputs> = async (data) => {
-    console.log(data);
     if (user) {
       setIsUpdating(true);
       authRepository

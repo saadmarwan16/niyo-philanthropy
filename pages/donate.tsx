@@ -17,7 +17,6 @@ interface DonatePageProps {
 }
 
 const Donate: NextPage<DonatePageProps> = (props) => {
-  const [isSingle, setIsSingle] = useState(true);
   const [results, setResults] = useState(props.results);
   const [error, setError] = useState(props.error);
 
@@ -38,27 +37,9 @@ const Donate: NextPage<DonatePageProps> = (props) => {
                 <ReactMarkdown className="mt-3">
                   {results.data.attributes.description}
                 </ReactMarkdown>
-                <div className="mt-6 tabs tabs-boxed w-fit">
-                  <a
-                    onClick={() => setIsSingle(true)}
-                    className={`tab text-base sm:text-lg ${
-                      isSingle && "tab-active"
-                    }`}
-                  >
-                    Give Once
-                  </a>
-                  <a
-                    onClick={() => setIsSingle(false)}
-                    className={`tab text-base sm:text-lg ${
-                      !isSingle && "tab-active"
-                    }`}
-                  >
-                    Give Monthly
-                  </a>
-                </div>
               </div>
 
-              {isSingle ? <OneTimeDonation /> : <MonthlyDonation />}
+              <OneTimeDonation />
             </div>
           </main>
           <ContactUs />
