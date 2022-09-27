@@ -25,6 +25,7 @@ export interface DatumAttributes {
   conclusion: string;
   time_to_read: number;
   slug: string;
+  completed: boolean;
   image: Image;
   category: Category;
   footer: Footer;
@@ -47,16 +48,19 @@ export interface PurpleAttributes {
 }
 
 export interface Footer {
-  id: number;
-  phone: string;
-  email: string;
-  address: string;
-  description: Description;
+  data: FooterData;
 }
 
-export interface Description {
+export interface FooterData {
   id: number;
-  content: string;
+  attributes: FluffyAttributes;
+}
+
+export interface FluffyAttributes {
+  description: string;
+  email: string;
+  phone: string;
+  address: string;
 }
 
 export interface Image {
@@ -65,10 +69,10 @@ export interface Image {
 
 export interface ImageData {
   id: number;
-  attributes: FluffyAttributes;
+  attributes: TentacledAttributes;
 }
 
-export interface FluffyAttributes {
+export interface TentacledAttributes {
   url: string;
 }
 
@@ -77,9 +81,8 @@ export interface Meta {
 }
 
 export interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
+  start: number;
+  limit: number;
   total: number;
 }
 

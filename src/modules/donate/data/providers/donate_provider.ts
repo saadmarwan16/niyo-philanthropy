@@ -2,8 +2,6 @@ import http from "../../../../shared/utils/http";
 import { ConvertDonatePageModel } from "../models/donate_page_model";
 
 export class DonateProvider {
-  create = async (data: string) => {};
-
   getPage = async (query: string) => {
     const response = await http.get(`/donate?${query}`);
 
@@ -11,14 +9,6 @@ export class DonateProvider {
       JSON.stringify(response.data)
     );
   };
-
-  getMany = async (query: string) => {};
-
-  getAll = async () => {};
-
-  update = async (id: string, data: string) => {};
-
-  delete = async (id: string) => {};
 }
 
 const donateProvider = new DonateProvider();

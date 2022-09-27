@@ -1,12 +1,6 @@
-// import { makeAutoObservable } from "mobx";
-
 import homeRepository from "../data/repositories/home_repository";
 
 export class HomeController {
-  //   constructor() {
-  //     makeAutoObservable(this);
-  //   }
-
   getPage = async () => {
     const { error, results } = await homeRepository.getPage();
 

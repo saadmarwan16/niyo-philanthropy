@@ -55,6 +55,25 @@ export class ProfileRepository {
     }
   };
 
+  makeWalletDonation = async (
+    token: string,
+    data: {
+      amount: number;
+      campaign: number;
+    }
+  ) => {
+    try {
+      const results = await profileProvider.makeWalletDonation(
+        token,
+        JSON.stringify(data)
+      );
+
+      return { error: null, results };
+    } catch (err) {
+      return handleError(err);
+    }
+  };
+
   getQuery = () => {
     return getProfileQuery();
   };

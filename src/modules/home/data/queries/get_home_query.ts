@@ -9,6 +9,9 @@ const getHomeQuery = () => {
             image: {
               fields: ["url"],
             },
+            category: {
+              fields: ["title"],
+            },
           },
         },
         footer: {
@@ -32,13 +35,38 @@ const getHomeQuery = () => {
               populate: "*",
             },
             image1: {
-              populate: "*",
+              fields: ["url"],
             },
             image2: {
-              populate: "*",
+              fields: ["url"],
             },
             image3: {
-              populate: "*",
+              fields: ["url"],
+            },
+          },
+        },
+        hero_details: {
+          populate: {
+            detail1: {
+              populate: {
+                hero_image: {
+                  fields: ["url"],
+                },
+              },
+            },
+            detail2: {
+              populate: {
+                hero_image: {
+                  fields: ["url"],
+                },
+              },
+            },
+            detail3: {
+              populate: {
+                hero_image: {
+                  fields: ["url"],
+                },
+              },
             },
           },
         },

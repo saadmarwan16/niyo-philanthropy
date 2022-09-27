@@ -6,8 +6,6 @@ export class DonateController {
   pageData: DonatePageModel | null = null;
   error: ErrorModel | null = null;
 
-  create = async (data: string) => {};
-
   getPage = async () => {
     const { error, results } = await donateRepository.getPage();
     this.pageData = results;
@@ -15,14 +13,6 @@ export class DonateController {
 
     return { error, results };
   };
-
-  getMany = async (query: string) => {};
-
-  getAll = async () => {};
-
-  update = async (id: string, data: string) => {};
-
-  delete = async (id: string) => {};
 }
 
 const donateController = new DonateController();

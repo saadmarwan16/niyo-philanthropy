@@ -29,6 +29,7 @@ export interface Donation {
 export interface Campaign {
   id: number;
   title: string;
+  slug: string;
   image: Image | null;
   category: Category | null;
 }

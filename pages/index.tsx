@@ -40,17 +40,17 @@ const Home: NextPage<HomeProps> = ({ error, results }) => {
         </div>
       ) : (
         <>
-          <HomeMainHero
-            title={data.slogan}
-            description={data.company_description}
-          />
+          <HomeMainHero details={results.data.attributes.hero_details} />
           <AboutUs data={data.about_us} />
           <MissionAndVision data={data.mission_and_vision} />
           <Details data={data.making_difference} />
           <Achievements data={data.achievements} />
           <SupportMethods />
           <HomeCategories data={data.categories} />
-          <HomeCampaigns campaigns={data.campaigns} />
+          {data.campaigns.data.filter(
+            (campaign) =>
+              campaign.attributes.amount_raised < campaign.attributes.target
+          ).length > 0 && <HomeCampaigns campaigns={data.campaigns} />}
           <ContactUs />
           <Footer data={data.footer.data.attributes} />
         </>

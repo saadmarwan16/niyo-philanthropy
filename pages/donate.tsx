@@ -1,6 +1,5 @@
 import type { GetServerSideProps, NextPage } from "next";
 import { useState } from "react";
-import MonthlyDonation from "../src/modules/donate/components/MonthlyDonation";
 import OneTimeDonation from "../src/modules/donate/components/OneTimeDonation";
 import donateController from "../src/modules/donate/controllers/donate_controller";
 import { DonatePageModel } from "../src/modules/donate/data/models/donate_page_model";
@@ -39,11 +38,13 @@ const Donate: NextPage<DonatePageProps> = (props) => {
                 </ReactMarkdown>
               </div>
 
-              <OneTimeDonation />
+              <OneTimeDonation campaigns={results.data.campaigns} />
             </div>
           </main>
           <ContactUs />
-          <Footer data={results.data.attributes.footer.data.attributes} />
+          {results.data.attributes.footer.data?.attributes && (
+            <Footer data={results.data.attributes.footer.data?.attributes} />
+          )}
         </>
       )}
     </div>

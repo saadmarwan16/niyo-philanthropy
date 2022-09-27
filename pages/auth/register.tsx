@@ -125,12 +125,6 @@ const Register: NextPage<RegisterPageProps> = ({}) => {
                 >
                   Register
                 </button>
-                <button
-                  type={"button"}
-                  className="gap-6 normal-case btn btn-ghost btn-sm sm:btn-md"
-                >
-                  <FcGoogle className="text-xl" /> Register with Google
-                </button>
               </div>
               <p className="text-center">
                 Already have an account?{" "}

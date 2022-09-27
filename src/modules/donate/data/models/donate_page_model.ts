@@ -12,6 +12,7 @@ export interface DonatePageModel {
 export interface DonatePageModelData {
   id: number;
   attributes: PurpleAttributes;
+  campaigns: Campaign[];
 }
 
 export interface PurpleAttributes {
@@ -24,7 +25,7 @@ export interface PurpleAttributes {
 }
 
 export interface Footer {
-  data: FooterData;
+  data: FooterData | null;
 }
 
 export interface FooterData {
@@ -37,6 +38,17 @@ export interface FluffyAttributes {
   email: string;
   phone: string;
   address: string;
+}
+
+export interface Campaign {
+  id: number;
+  title: string;
+  image: Image | null;
+}
+
+export interface Image {
+  id: number;
+  url: string;
 }
 
 export interface Meta {}

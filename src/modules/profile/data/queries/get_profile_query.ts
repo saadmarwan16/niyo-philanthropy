@@ -8,7 +8,7 @@ const getProfileQuery = () => {
           fields: ["amount", "status", "createdAt"],
           populate: {
             campaign: {
-              fields: ["title"],
+              fields: ["title", "slug"],
               populate: {
                 image: {
                   fields: ["url"],

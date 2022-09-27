@@ -45,8 +45,6 @@ export class AuthRepository {
     }
   };
 
-  signInWithGoogle = async (query: string) => {};
-
   changePassword = async (user: UserModel, data: IChangePasswordInputs) => {
     try {
       const results = await authProvider.changePassword(

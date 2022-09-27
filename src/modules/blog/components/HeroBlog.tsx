@@ -34,7 +34,7 @@ const HeroBlog: FunctionComponent<HeroBlogProps> = ({ blog }) => {
       />
       <div className="blog-main-hero-section blog-campaign-horizontal-padding">
         <div className="flex items-center gap-3 heading3 !font-medium">
-          <span>{category.data?.attributes.title}</span>
+          <span>{category.data?.attributes.title ?? 'No Category'}</span>
           <span className="w-1 h-1 bg-white rounded-full"></span>
           <span>{time_to_read} min read</span>
         </div>

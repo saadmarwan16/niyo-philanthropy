@@ -26,10 +26,8 @@ interface PaymentSuccessPageProps {
 
 const PaymentSuccess: NextPage<PaymentSuccessPageProps> = (props) => {
   const [error, setError] = useState<ErrorModel | null>(props.error);
-  const [results, setResults] = useState(props.results);
   const [isLoading, setIsLoading] = useState(false);
-  //   const router = useRouter();
-  const { user, setUser } = useAuthContext();
+  const { user } = useAuthContext();
 
   const retryConfirmation = async () => {
     if (props.payment_type === "donation") {
@@ -37,6 +35,20 @@ const PaymentSuccess: NextPage<PaymentSuccessPageProps> = (props) => {
       const results = await paymentRepository.confirmDonationCheckout(
         props.checkout_session
       );
+      setIsLoading(false);
+      const { error } = results;
+      if (error) {
+        errorToast(error.name, error.message, "payment-success");
+      }
+
+      setError(error);
+    }
+
+    if (props.payment_type === "wallet" && user) {
+      setIsLoading(true);
+      const results = await profileRepository.confirmWalletCheckout(user.jwt, {
+        checkout_session: props.checkout_session,
+      });
       setIsLoading(false);
       const { error } = results;
       if (error) {
@@ -130,8 +142,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      checkout_session,
-      payment_type,
+      checkout_session: checkout_session ?? null,
+      payment_type: payment_type ?? null,
       ...results,
     },
   };

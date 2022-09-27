@@ -6,8 +6,8 @@ export class BlogsController {
   blogs: BlogsModel | null = null;
   error: ErrorModel | null = null;
 
-  getAll = async () => {
-    const { error, results } = await blogsRepository.getAll();
+  getAll = async (page?: number) => {
+    const { error, results } = await blogsRepository.getAll(page ?? 1);
     this.blogs = results;
     this.error = error;
 

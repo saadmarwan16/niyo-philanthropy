@@ -99,18 +99,6 @@ const Login: NextPage<LoginPageProps> = ({}) => {
                   register={register("password")}
                 />
                 <div className="flex flex-wrap items-center justify-end">
-                {/* <div className="flex flex-wrap items-center justify-between"> */}
-                  {/* <div className="form-control">
-                    <label className="cursor-pointer label !justify-start gap-3">
-                      <input
-                        type="checkbox"
-                        className="checkbox checkbox-xs md:checkbox-sm"
-                        {...register("remember_me")}
-                      />
-                      <span className="label-text">Remember me</span>
-                    </label>
-                  </div> */}
-
                   <Link href={Routes.FORGOT_PASSWORD}>
                     <a className="text-sm text-blue-500 hover:text-blue-800">
                       Forgot Password?
@@ -124,12 +112,6 @@ const Login: NextPage<LoginPageProps> = ({}) => {
                   type="submit"
                 >
                   Login
-                </button>
-                <button
-                  type={"button"}
-                  className="gap-6 normal-case btn btn-ghost btn-sm sm:btn-md"
-                >
-                  <FcGoogle className="text-xl" /> Login with Google
                 </button>
               </div>
               <p className="text-center">

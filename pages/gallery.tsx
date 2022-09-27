@@ -45,21 +45,6 @@ const Gallery: NextPage<GalleryPageProps> = (props) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
 
-  // const images = [
-  //   "http://placeimg.com/1200/800/nature",
-  //   "http://placeimg.com/800/1200/nature",
-  //   "http://placeimg.com/1920/1080/nature",
-  //   "http://placeimg.com/1500/500/nature",
-  //   "/images/image1.jpg",
-  //   "/images/image2.jpg",
-  //   "/images/image3.jpg",
-  //   "/images/image4.jpg",
-  //   "/images/image5.jpg",
-  //   "/images/image6.jpg",
-  //   "/images/image7.jpg",
-  //   "/images/image8.jpg",
-  // ];
-
   const openImageViewer = useCallback((index: number) => {
     setCurrentImage(index);
     setIsViewerOpen(true);
@@ -80,12 +65,16 @@ const Gallery: NextPage<GalleryPageProps> = (props) => {
 
       {gallery && images?.imagesObj ? (
         <main>
-          <div className="flex flex-col items-center gap-16 py-4">
+          <div className="flex flex-col items-center gap-12 py-4">
             <GalleryHeading data={gallery.data.attributes} />
             <Images
+              isViewerOpen={isViewerOpen}
               images={images?.imagesObj}
               openImageViewer={openImageViewer}
             />
+            <div className="flex justify-center mb-20 text-4xl text-primary">
+              The End ...
+            </div>
           </div>
 
           {gallery.data.attributes.footer.data?.attributes && (

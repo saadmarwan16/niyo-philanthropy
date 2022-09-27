@@ -42,7 +42,7 @@ const AuthContextProvider: FunctionComponent<PropsWithChildren> = ({
             maxAge: 30 * 24 * 60 * 60,
             path: "/",
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: "lax",
           });
           setUserCookies(userString);
         },

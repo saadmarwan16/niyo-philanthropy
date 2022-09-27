@@ -64,82 +64,87 @@ const HomeCampaigns: FunctionComponent<HomeCampaignsProps> = ({
         className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         animate={control}
       >
-        {campaigns.slice(start, start + 3).map((campaign) => (
-          <div
-            key={campaign.id}
-            className="shadow-xl card card-compact bg-base-100"
-          >
-            <div className="avatar">
-              <div className="w-full h-64 rounded-lg sm:h-72">
-                <Image
-                  // src="/images/image4.jpg"
-                  src={
-                    campaign.attributes?.image?.data
-                      ? `${BASE_URL}${campaign.attributes.image.data.attributes.url}`
-                      : "/images/no_image.jpg"
-                  }
-                  alt="Help children rise out of poverty"
-                  layout="fill"
-                />
-              </div>
-              <span className="absolute bottom-0 left-0 px-4 py-1 text-white rounded-tr-lg bg-primary">
-                Human
-              </span>
-            </div>
-            <div className="gap-2 sm:gap-3 card-body">
-              <Link
-                href={Routes.CAMPAIGN_DETAILS(
-                  campaign.attributes.slug,
-                  campaign.id.toString()
-                )}
-              >
-                <a className="hover:text-primary">
-                  <h2 className="heading2 !font-medium line-clamp-1">
-                    {campaign.attributes.title}
-                  </h2>
-                </a>
-              </Link>
-              <p className="text-gray-500 line-clamp-3">
-                {/* {campaign.attributes.description} */}
-                Description
-              </p>
-              <progress
-                className="w-full mt-4 sm:mt-6 progress progress-primary"
-                value={campaign.attributes.amount_raised}
-                max={campaign.attributes.target}
-              >
-                text
-              </progress>
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="font-semibold">
-                    ${campaign.attributes.amount_raised}
-                  </span>
-                  <span> / </span>
-                  <span className="text-gray-500">
-                    {campaign.attributes.target}
-                  </span>
+        {campaigns
+          .filter(
+            (campaign) =>
+              campaign.attributes.amount_raised < campaign.attributes.target
+          )
+          .slice(start, start + 3)
+          .map((campaign) => (
+            <div
+              key={campaign.id}
+              className="shadow-xl card card-compact bg-base-100"
+            >
+              <div className="avatar">
+                <div className="w-full h-64 rounded-lg sm:h-72">
+                  <Image
+                    src={
+                      campaign.attributes?.image?.data
+                        ? `${BASE_URL}${campaign.attributes.image.data.attributes.url}`
+                        : "/images/no_image.jpg"
+                    }
+                    alt="Help children rise out of poverty"
+                    layout="fill"
+                  />
                 </div>
-                <div>
-                  <p className="font-semibold">
-                    {(
-                      (campaign.attributes.amount_raised /
-                        campaign.attributes.target) *
-                      100
-                    ).toFixed(2)}
-                    %
-                  </p>
-                </div>
+                <span className="absolute bottom-0 left-0 px-4 py-1 text-white rounded-tr-lg bg-primary">
+                  {campaign.attributes.category.data?.attributes.title ??
+                    "No Category"}
+                </span>
               </div>
-
-              <div className="flex justify-end mt-6">
-                <Link href={Routes.DONATE}>
-                  <a className="custom-btn-secondary w-fit">Donate now</a>
+              <div className="gap-2 sm:gap-3 card-body">
+                <Link
+                  href={Routes.CAMPAIGN_DETAILS(
+                    campaign.attributes.slug,
+                    campaign.id.toString()
+                  )}
+                >
+                  <a className="hover:text-primary">
+                    <h2 className="heading2 !font-medium line-clamp-1">
+                      {campaign.attributes.title}
+                    </h2>
+                  </a>
                 </Link>
+                <p className="text-gray-500 line-clamp-3">
+                  {campaign.attributes.introduction}
+                </p>
+                <progress
+                  className="w-full mt-4 sm:mt-6 progress progress-primary"
+                  value={campaign.attributes.amount_raised}
+                  max={campaign.attributes.target}
+                >
+                  text
+                </progress>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="font-semibold">
+                      ${campaign.attributes.amount_raised}
+                    </span>
+                    <span> / </span>
+                    <span className="text-gray-500">
+                      {campaign.attributes.target}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="font-semibold">
+                      {(
+                        (campaign.attributes.amount_raised /
+                          campaign.attributes.target) *
+                        100
+                      ).toFixed(2)}
+                      %
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex justify-end mt-6">
+                  <Link href={Routes.DONATE}>
+                    <a className="custom-btn-secondary w-fit">Donate now</a>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </motion.div>
     </section>
   );

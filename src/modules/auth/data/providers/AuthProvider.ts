@@ -30,8 +30,6 @@ export class AuthProvider {
     );
   };
 
-  signInWithGoogle = async (query: string) => {};
-
   changePassword = async (user: UserModel, data: string) => {
     const response = await http.post("/auth/change-password", data, {
       headers: {

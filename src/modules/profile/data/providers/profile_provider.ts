@@ -38,6 +38,17 @@ export class ProfileProvider {
 
     return response.data;
   };
+
+  makeWalletDonation = async (token: string, data: string) => {
+    const response = await http.post("/make-wallet-donation", data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  };
 }
 
 const profileProvider = new ProfileProvider();

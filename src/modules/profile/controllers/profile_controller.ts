@@ -1,4 +1,3 @@
-import { IWalletTopUp } from "../../../shared/types/interface";
 import profileRepository from "../data/repositories/profile_repository";
 
 export class ProfileController {

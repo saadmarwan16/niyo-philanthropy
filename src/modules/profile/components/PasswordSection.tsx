@@ -1,5 +1,4 @@
 import { FunctionComponent, useState } from "react";
-import ProfileHeading from "./ProfileHeading";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IChangePasswordInputs } from "../../../shared/types/interface";

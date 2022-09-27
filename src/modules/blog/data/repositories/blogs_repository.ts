@@ -3,9 +3,9 @@ import blogsProvider from "../providers/blogs_provider";
 import getBlogsQuery from "../queries/get_blogs_query";
 
 export class BlogsRepository {
-  getAll = async () => {
+  getAll = async (page: number) => {
     try {
-      const results = await blogsProvider.getAll(this.getQuery());
+      const results = await blogsProvider.getAll(this.getQuery(page));
 
       return { error: null, results };
     } catch (err) {
@@ -13,8 +13,8 @@ export class BlogsRepository {
     }
   };
 
-  getQuery = () => {
-    return getBlogsQuery();
+  getQuery = (page: number) => {
+    return getBlogsQuery(page);
   };
 }
 

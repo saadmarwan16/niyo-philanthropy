@@ -3,6 +3,9 @@ import Image from "next/image";
 import { BlogModelData } from "../data/models/blog_model";
 import Footer from "../../../shared/components/Footer";
 import { BASE_URL } from "../../../constants/urls";
+import { getDateMMMDDYYYY } from "../../../shared/utils/getFormatedDates";
+import Link from "next/link";
+import Routes from "../../../constants/routes";
 
 interface SingleBlogDetailsProps {
   data: BlogModelData;
@@ -37,7 +40,9 @@ const SingleBlogDetails: FunctionComponent<SingleBlogDetailsProps> = ({
               <span className="font-semibold">{time_to_read} min read</span>
             </div>
             <h1 className="heading1 !font-medium">{title}</h1>
-            <span className="text-gray-500">Published on Aug 3, 2022</span>
+            <span className="text-gray-500">
+              Published on {getDateMMMDDYYYY(createdAt)}
+            </span>
           </div>
           <div className="w-full lg:w-4/5 avatar">
             <div className="w-full !aspect-[2/1] sm:!aspect-[5/2] lg:!aspect-[5/2]">
@@ -65,12 +70,14 @@ const SingleBlogDetails: FunctionComponent<SingleBlogDetailsProps> = ({
           </div>
           <div className="flex flex-col items-center gap-6">
             <div className="text-center">
-              <h2 className="heading2">Found this story interesting?</h2>
+              <h2 className="heading2">Found this article interesting?</h2>
               <span className="text-gray-500">
-                Support the stories you find touching
+                Support the articles you find touching
               </span>
             </div>
-            <button className="custom-btn-secondary">Donate Now</button>
+            <Link href={Routes.DONATE}>
+              <a className="custom-btn-secondary">Donate Now</a>
+            </Link>
           </div>
         </div>
       </div>

@@ -15,8 +15,6 @@ export interface HomeModelData {
 }
 
 export interface PurpleAttributes {
-  slogan: string;
-  company_description: string;
   createdAt: Date;
   updatedAt: Date;
   campaigns: Campaigns;
@@ -26,6 +24,7 @@ export interface PurpleAttributes {
   categories: Categories;
   mission_and_vision: MissionAndVision;
   making_difference: MakingDifference;
+  hero_details: HeroDetails;
 }
 
 export interface AboutUs {
@@ -61,20 +60,33 @@ export interface DatumAttributes {
   conclusion: string;
   time_to_read: number;
   slug: string;
-  image?: ImageClass;
-  __type?: string;
+  image: Image1;
+  category: Category;
 }
 
-export interface ImageClass {
-  data: ImageData | null;
+export interface Category {
+  data: CategoryData | null;
 }
 
-export interface ImageData {
+export interface CategoryData {
   id: number;
   attributes: FluffyAttributes;
 }
 
 export interface FluffyAttributes {
+  title: string;
+}
+
+export interface Image1 {
+  data: Image1Data | null;
+}
+
+export interface Image1Data {
+  id: number;
+  attributes: TentacledAttributes;
+}
+
+export interface TentacledAttributes {
   url: string;
 }
 
@@ -94,14 +106,28 @@ export interface Footer {
 
 export interface FooterData {
   id: number;
-  attributes: TentacledAttributes;
+  attributes: StickyAttributes;
 }
 
-export interface TentacledAttributes {
+export interface StickyAttributes {
   description: string;
   email: string;
   phone: string;
   address: string;
+}
+
+export interface HeroDetails {
+  id: number;
+  detail1: Detail;
+  detail2: Detail;
+  detail3: Detail;
+}
+
+export interface Detail {
+  id: number;
+  title: string;
+  description: string;
+  hero_image: Image1;
 }
 
 export interface MakingDifference {
@@ -110,71 +136,14 @@ export interface MakingDifference {
   medicine: string;
   donation: string;
   description: Description;
-  image1: Image1Class;
-  image2: Image1Class;
-  image3: Image1Class;
+  image1: Image1;
+  image2: Image1;
+  image3: Image1;
 }
 
 export interface Description {
   id: number;
   content: string;
-}
-
-export interface Image1Class {
-  data: Image1Data;
-}
-
-export interface Image1Data {
-  id: number;
-  attributes: StickyAttributes;
-}
-
-export interface StickyAttributes {
-  name: string;
-  alternativeText: string;
-  caption: string;
-  width: number;
-  height: number;
-  formats: Formats;
-  hash: string;
-  ext: Ext;
-  mime: Mime;
-  size: number;
-  url: string;
-  previewUrl: null;
-  provider: string;
-  provider_metadata: null;
-  createdAt: Date;
-  updatedAt: Date;
-  related: Campaigns;
-}
-
-export enum Ext {
-  ExtJPG = ".JPG",
-  Jpg = ".jpg",
-}
-
-export interface Formats {
-  thumbnail: Large;
-  large: Large;
-  medium: Large;
-  small: Large;
-}
-
-export interface Large {
-  name: string;
-  hash: string;
-  ext: Ext;
-  mime: Mime;
-  path: null;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
-}
-
-export enum Mime {
-  Imagejpeg = "image/jpeg",
 }
 
 export interface MissionAndVision {

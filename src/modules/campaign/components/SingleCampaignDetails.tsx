@@ -3,6 +3,8 @@ import { CampaignModelData } from "../data/models/campaign_model";
 import Image from "next/image";
 import { BASE_URL } from "../../../constants/urls";
 import Footer from "../../../shared/components/Footer";
+import Link from "next/link";
+import Routes from "../../../constants/routes";
 
 interface SingleCampaignDetailsProps {
   data: CampaignModelData;
@@ -61,7 +63,7 @@ const SingleCampaignDetails: FunctionComponent<SingleCampaignDetailsProps> = ({
           <div className="w-full lg:w-4/5 avatar">
             <div className="w-full !aspect-[2/1] sm:!aspect-[5/2] lg:!aspect-[5/2]">
               <Image
-                src={image ? `${BASE_URL}${image}` : "/images/image1.jpg"}
+                src={image ? `${BASE_URL}${image}` : "/images/no_image.jpg"}
                 alt=""
                 layout="fill"
                 className="rounded-lg"
@@ -89,7 +91,15 @@ const SingleCampaignDetails: FunctionComponent<SingleCampaignDetailsProps> = ({
                 Support the stories you find touching
               </span>
             </div>
-            <button className="custom-btn-secondary">Donate Now</button>
+            <Link href={Routes.DONATE}>
+              <a
+                className={`custom-btn-secondary ${
+                  amount_raised >= target && "!btn-disabled"
+                }`}
+              >
+                Donate Now
+              </a>
+            </Link>
           </div>
         </div>
       </div>

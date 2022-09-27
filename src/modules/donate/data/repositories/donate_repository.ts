@@ -3,8 +3,6 @@ import donateProvider from "../providers/donate_provider";
 import getDonateQuery from "../queries/get_donate_query";
 
 export class DonateRepository {
-  create = async (data: string) => {};
-
   getPage = async () => {
     try {
       const results = await donateProvider.getPage(this.getQuery());
@@ -14,14 +12,6 @@ export class DonateRepository {
       return handleError(err);
     }
   };
-
-  getMany = async (query: string) => {};
-
-  getAll = async () => {};
-
-  update = async (id: string, data: string) => {};
-
-  delete = async (id: string) => {};
 
   getQuery = () => {
     return getDonateQuery();

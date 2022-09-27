@@ -4,11 +4,13 @@ import { IImagesObj } from "../../../shared/types/interface";
 
 interface ImagesProps {
   images: IImagesObj[];
+  isViewerOpen: boolean;
   openImageViewer: (index: number) => void;
 }
 
 const Images: FunctionComponent<ImagesProps> = ({
   images,
+  isViewerOpen,
   openImageViewer,
 }) => {
   return (
@@ -20,11 +22,20 @@ const Images: FunctionComponent<ImagesProps> = ({
           onClick={() => openImageViewer(image.index)}
           style={{ content: "Some context" }}
         >
-          <div className="!flex h-full items-center justify-center text-xl text-center transition-all text-white flex-grow text-overlay z-10 hover:text-white text-transparent text-opacity-0">
+          <div
+            className={`!flex h-full items-center justify-center text-xl text-center transition-all text-white flex-grow text-overlay hover:text-white text-transparent text-opacity-0 ${
+              !isViewerOpen && "z-10"
+            }`}
+          >
             {image.title}
           </div>
           <div>
-            <Image src={image.url} alt={image.title} layout="fill" />
+            <Image
+              src={image.url}
+              alt={image.title}
+              layout="fill"
+              className="rounded-lg"
+            />
           </div>
         </div>
       ))}

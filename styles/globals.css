@@ -95,6 +95,10 @@ html {
   @apply w-full !outline-none textarea textarea-ghost border-2 focus:border-secondary bg-base-200;
 }
 
+.custom-select {
+  @apply w-full !outline-none select select-ghost border-2 focus:border-secondary select-sm sm:select-md bg-base-200;
+}
+
 .overlapping-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -180,6 +184,7 @@ html {
   top: 0;
   left: 0;
   opacity: 0;
+  border-radius: 0.5rem;
   transition: opacity 400ms ease-in-out;
 }
 

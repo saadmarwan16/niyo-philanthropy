@@ -45,6 +45,7 @@ export interface IResetPasswordInputs {
 
 export interface IDonateAmountInput {
   email: string;
+  campaign: number;
   amount: number;
 }
 

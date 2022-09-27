@@ -10,11 +10,14 @@ import { getDateMMMDDYYYY } from "../../../shared/utils/getFormatedDates";
 import authRepository from "../../auth/data/repositories/AuthRepository";
 import errorToast from "../../../shared/utils/errorToast";
 import successToast from "../../../shared/utils/successToast";
+import { destroyCookie } from "nookies";
+import { useRouter } from "next/router";
 
 interface ProfileSectionProps {}
 
 const ProfileSection: FunctionComponent<ProfileSectionProps> = () => {
   const [isUpdating, setIsUpdating] = useState(false);
+  const router = useRouter();
   const { user, setUser } = useAuthContext();
   const {
     register,
@@ -28,6 +31,11 @@ const ProfileSection: FunctionComponent<ProfileSectionProps> = () => {
       username: user?.username,
     },
   });
+
+  const logout = async () => {
+    await destroyCookie(null, "user");
+    router.reload();
+  };
 
   const onSubmit: SubmitHandler<IProfileInputs> = async (data) => {
     if (user) {
@@ -53,18 +61,27 @@ const ProfileSection: FunctionComponent<ProfileSectionProps> = () => {
 
   return (
     <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <ProfileHeading
           title="Profile"
           description={`Joined on ${getDateMMMDDYYYY(user?.createdAt)}`}
         />
-        <button
-          className={`custom-btn-secondary !btn-sm ${
-            !isDirty && "!btn-disabled"
-          } ${isUpdating && "loading"}`}
-        >
-          Save
-        </button>
+        <div className="flex gap-3">
+          <button
+            type={"button"}
+            className="custom-btn-secondary-outline btn-secondary !btn-sm"
+            onClick={logout}
+          >
+            Logout
+          </button>
+          <button
+            className={`custom-btn-secondary !btn-sm ${
+              !isDirty && "!btn-disabled"
+            } ${isUpdating && "loading"}`}
+          >
+            Save
+          </button>
+        </div>
       </div>
 
       <div className="flex flex-col w-full gap-3 md:w-4/5 lg:w-2/3">
