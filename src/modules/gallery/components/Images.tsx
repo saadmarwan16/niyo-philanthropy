@@ -20,7 +20,6 @@ const Images: FunctionComponent<ImagesProps> = ({
           key={index}
           className="items-center justify-center cursor-pointer avatar image-container fade"
           onClick={() => openImageViewer(image.index)}
-          style={{ content: "Some context" }}
         >
           <div
             className={`!flex h-full items-center justify-center text-xl text-center transition-all text-white flex-grow text-overlay hover:text-white text-transparent text-opacity-0 ${

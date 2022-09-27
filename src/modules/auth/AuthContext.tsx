@@ -39,7 +39,7 @@ const AuthContextProvider: FunctionComponent<PropsWithChildren> = ({
         setUser: (user) => {
           const userString = Encryption.encrypt(JSON.stringify(user));
           setCookie(null, "user", userString, {
-            maxAge: 30 * 24 * 60 * 60,
+            maxAge: 7 * 24 * 60 * 60,
             path: "/",
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",

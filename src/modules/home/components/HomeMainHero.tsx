@@ -13,12 +13,16 @@ interface HomeMainHeroProps {
 const HomeMainHero: FunctionComponent<HomeMainHeroProps> = ({ details }) => {
   const { detail1, detail2, detail3 } = details;
   return (
-    <div className="object-cover w-full min-h-screen carousel">
-      <div id="slide1" className="relative w-full carousel-item">
+    <div className="object-cover w-full h-fit carousel">
+      <div
+        id="slide1"
+        className="relative w-full h-96 sm:h-[500px] md:h-[600px] lg:h-screen carousel-item"
+      >
         <Image
           src={`${BASE_URL}${detail1.hero_image.data?.attributes.url!}`}
           layout="fill"
           alt="Image 1"
+          className="object-cover"
         />
         <div className="absolute flex flex-col justify-between h-full p-5 text-white bg-black bg-opacity-40">
           <Header />

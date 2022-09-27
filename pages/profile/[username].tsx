@@ -16,6 +16,8 @@ import { ErrorModel } from "../../src/shared/errors/error_model";
 import { ProfileModel } from "../../src/modules/profile/data/models/profile_model";
 import CustomLoader from "../../src/shared/components/CustomLoader";
 import ErrorContent from "../../src/shared/components/ErrorContent";
+import { GrAdd, GrUpdate } from "react-icons/gr";
+import { MdDelete } from "react-icons/md";
 
 interface UserProfilePageProps {
   error: ErrorModel | null;
@@ -83,6 +85,22 @@ const UserProfile: NextPage<UserProfilePageProps> = (props) => {
 
                 <div className="flex-col hidden gap-8 px-4 py-8 border border-gray-500 rounded-lg md:flex md:w-2/5 lg:w-2/6 h-fit">
                   <div className="flex flex-col items-center gap-4">
+                    {/* <div className="flex gap-3">
+                      {user?.profile_image?.url ? (
+                        <>
+                          <button className="btn btn-secondary btn-square">
+                            <GrUpdate className="text-2xl" />
+                          </button>
+                          <button className="btn btn-secondary btn-square">
+                            <MdDelete className="text-2xl" />
+                          </button>
+                        </>
+                      ) : (
+                        <button className="btn btn-secondary btn-square">
+                          <GrAdd className="text-2xl" />
+                        </button>
+                      )}
+                    </div> */}
                     <Avatar
                       alt="User Profile Image"
                       url={
