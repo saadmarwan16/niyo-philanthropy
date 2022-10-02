@@ -14,7 +14,7 @@ const SelectDonationCampaign: FunctionComponent<
   return (
     <div className="w-full form-control">
       <label className="label">
-        <span className="font-semibold label-text">Add product to brand</span>
+        <span className="font-semibold label-text">Choose a campaign</span>
       </label>
 
       <select

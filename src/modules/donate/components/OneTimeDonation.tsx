@@ -20,7 +20,6 @@ import { BASE_URL } from "../../../constants/urls";
 import WalletDonationCompletedModal from "./WalletDonationCompletedModal";
 import profileRepository from "../../profile/data/repositories/profile_repository";
 import AuthModal from "../../auth/components/AuthModal";
-import successToast from "../../../shared/utils/successToast";
 
 interface OneTimeDonationProps {
   campaigns: Campaign[];
@@ -69,7 +68,7 @@ const OneTimeDonation: FunctionComponent<OneTimeDonationProps> = ({
         payment_type: "donation",
         image_url: image,
         donor: user?.id,
-        campaign: data.campaign,
+        campaign: data.campaign, 
       };
       setIsCheckoutDonation(true);
       const { error, results } = await paymentRepository.createDonationCheckout(

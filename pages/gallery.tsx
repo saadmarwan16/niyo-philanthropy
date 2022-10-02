@@ -5,7 +5,6 @@ import Meta from "../src/shared/components/Meta";
 import ImageViewer from "react-simple-image-viewer";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Header from "../src/shared/components/Header";
-import Image from "next/image";
 import galleryController from "../src/modules/gallery/controllers/gallery_controller";
 import { ErrorModel } from "../src/shared/errors/error_model";
 import { GalleryModel } from "../src/modules/gallery/data/models/gallery_model";
@@ -65,16 +64,13 @@ const Gallery: NextPage<GalleryPageProps> = (props) => {
 
       {gallery && images?.imagesObj ? (
         <main>
-          <div className="flex flex-col items-center gap-12 py-4">
+          <div className="flex flex-col items-center gap-12 py-4 pb-16">
             <GalleryHeading data={gallery.data.attributes} />
             <Images
               isViewerOpen={isViewerOpen}
               images={images?.imagesObj}
               openImageViewer={openImageViewer}
             />
-            <div className="flex justify-center mb-20 text-4xl text-primary">
-              The End ...
-            </div>
           </div>
 
           {gallery.data.attributes.footer.data?.attributes && (
