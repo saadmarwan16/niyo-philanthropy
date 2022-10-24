@@ -20,9 +20,9 @@ export interface PurpleAttributes {
   amount_raised: number;
   createdAt:     Date;
   updatedAt:     Date;
-  introduction:  string;
+  introduction:  string | null;
   body:          string;
-  conclusion:    string;
+  conclusion:    string | null;
   time_to_read:  number;
   slug:          string;
   image:         Image;

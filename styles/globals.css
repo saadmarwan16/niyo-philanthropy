@@ -192,7 +192,7 @@ html {
   opacity: 0.5;
 }
 
-.side-bar {
+/* .side-bar {
   position: absolute;
   top: 0;
   left: 0;
@@ -247,4 +247,4 @@ html {
   display: flex;
   align-items: center;
   cursor: pointer;
-}
+} */

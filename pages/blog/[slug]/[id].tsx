@@ -1,5 +1,4 @@
 import type { GetServerSideProps, NextPage } from "next";
-import Image from "next/image";
 import { useState } from "react";
 import SingleBlogDetails from "../../../src/modules/blog/components/SingleBlogDetails";
 import blogController from "../../../src/modules/blog/controllers/blog_controller";

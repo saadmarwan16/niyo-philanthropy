@@ -19,9 +19,9 @@ const getCampaignsQuery = () => {
         category: {
           populate: "*",
         },
-        footer: {
-          fields: ["description", "email", "phone", "address"],
-        },
+        // footer: {
+        //   fields: ["description", "email", "phone", "address"],
+        // },
       },
     },
     {

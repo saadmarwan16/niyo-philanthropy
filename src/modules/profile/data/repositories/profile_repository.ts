@@ -7,6 +7,18 @@ import profileProvider from "../providers/profile_provider";
 import getProfileQuery from "../queries/get_profile_query";
 
 export class ProfileRepository {
+  addImage = async () => {
+    await profileProvider.addImage()
+  };
+
+  updateImage = async () => {
+    await profileProvider.updateImage()
+  };
+
+  deleteImage = async () => {
+    await profileProvider.deleteImage()
+  };
+
   getOne = async (token: string) => {
     try {
       const results = await profileProvider.getOne(token, this.getQuery());

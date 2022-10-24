@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { NextPage } from "next";
 import Meta from "../../src/shared/components/Meta";
 import Image from "next/image";
 import Routes from "../../src/constants/routes";
@@ -139,12 +139,6 @@ const ResetPassword: NextPage<ResetPasswordPageProps> = ({}) => {
       </div>
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  return {
-    props: {},
-  };
 };
 
 export default ResetPassword;

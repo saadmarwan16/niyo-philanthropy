@@ -16,9 +16,9 @@ export interface BlogModelData {
 
 export interface PurpleAttributes {
   title: string;
-  introduction: string;
+  introduction: string | null;
   body: string;
-  conclusion: string;
+  conclusion: string | null;
   time_to_read: number;
   createdAt: Date;
   updatedAt: Date;

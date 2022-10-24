@@ -26,7 +26,9 @@ const Images: FunctionComponent<ImagesProps> = ({
               !isViewerOpen && "z-10"
             }`}
           >
-            {image.title}
+            <p className="w-full px-3 line-clamp-3 sm:px-4 md:px-5">
+              {image.title}
+            </p>
           </div>
           <div>
             <Image

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Routes from "../../src/constants/routes";
 import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FcGoogle } from "react-icons/fc";
 import { SubmitHandler, useForm } from "react-hook-form";
 import AuthInputField from "../../src/modules/auth/components/AuthInputField";
 import { ILoginInputs } from "../../src/shared/types/interface";

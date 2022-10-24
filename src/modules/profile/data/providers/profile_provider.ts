@@ -2,6 +2,18 @@ import http from "../../../../shared/utils/http";
 import { ConvertProfileModel } from "../models/profile_model";
 
 export class ProfileProvider {
+  addImage = async () => {
+    console.log('add image')
+  };
+
+  updateImage = async () => {
+    console.log('update image')
+  };
+
+  deleteImage = async () => {
+    console.log('delete image')
+  };
+
   getOne = async (token: string, query: string) => {
     const response = await http.get(`users/me?${query}`, {
       headers: {

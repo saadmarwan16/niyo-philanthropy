@@ -27,12 +27,17 @@ const Campaign: FunctionComponent<CampaignProps> = ({ campaign }) => {
       </div>
       <div className="card-body">
         <div className="flex items-center gap-2 text-base bg-base-200 px-2 py-0.5 rounded-lg w-fit">
-          <small>{campaign.attributes.category.data?.attributes.title ?? 'No Category'}</small>
+          <small>
+            {campaign.attributes.category.data?.attributes.title ??
+              "No Category"}
+          </small>
           <span className="w-1 h-1 bg-gray-800 rounded-full"></span>
           <small>{campaign.attributes.time_to_read} min read</small>
         </div>
         <h2 className="card-title line-clamp-1">{campaign.attributes.title}</h2>
-        <p className="line-clamp-3">{campaign.attributes.introduction}</p>
+        <p className="line-clamp-3">
+          {campaign.attributes.introduction ?? campaign.attributes.body}
+        </p>
         <progress
           className="w-full mt-4 sm:mt-6 progress progress-primary"
           value={campaign.attributes.amount_raised}

@@ -22,7 +22,6 @@ const SingleBlogDetails: FunctionComponent<SingleBlogDetailsProps> = ({
     footer,
     image: imageData,
     introduction,
-    slug,
     time_to_read,
     title,
   } = data.attributes;
@@ -54,19 +53,10 @@ const SingleBlogDetails: FunctionComponent<SingleBlogDetailsProps> = ({
               />
             </div>
           </div>
-          <div className="flex flex-col items-center w-full gap-8 sm:w-4/5 lg:w-2/3 xl:w-3/5">
-            <div>
-              <h2 className="mb-2 heading2">Introduction</h2>
-              <p>{introduction}</p>
-            </div>
-            <div>
-              <h2 className="mb-2 heading2">Body</h2>
-              <p>{body}</p>
-            </div>
-            <div>
-              <h2 className="mb-2 heading2">Conclusion</h2>
-              <p>{conclusion}</p>
-            </div>
+          <div className="flex flex-col items-center w-full gap-8 sm:gap-10 md:gap-12 sm:w-4/5 lg:w-2/3 xl:w-3/5">
+            <p>{introduction}</p>
+            <p>{body}</p>
+            <p>{conclusion}</p>
           </div>
           <div className="flex flex-col items-center gap-6">
             <div className="text-center">

@@ -29,26 +29,26 @@ const HomeMainHero: FunctionComponent<HomeMainHeroProps> = ({ details }) => {
 
           <div className="flex items-center justify-between flex-grow w-full">
             <div className="flex items-center gap-4 md:gap-8 lg:gap-10">
-              <a href="#slide3" className="btn btn-circle">
+              <a href="#slide3" className="text-white btn btn-circle btn-primary">
                 <AiOutlineArrowLeft />
               </a>
               <div className="flex flex-col w-full gap-6 md:w-4/5 lg:w-3/5 xl:w-1/2">
                 <h1 className="heading1">{detail1.title}</h1>
                 <span className="line-clamp-3">{detail1.description}</span>
                 <div className="flex gap-2">
-                  <span className="flex items-center justify-center w-10 h-10 text-white rounded-full bg-primary">
+                  <a href='#slide1' className="flex items-center justify-center w-10 h-10 text-white rounded-full bg-primary">
                     1
-                  </span>
-                  <span className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
+                  </a>
+                  <a href='#slide2' className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
                     2
-                  </span>
-                  <span className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
+                  </a>
+                  <a href='#slide3' className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
                     3
-                  </span>
+                  </a>
                 </div>
               </div>
             </div>
-            <a href="#slide2" className="btn btn-circle">
+            <a href="#slide2" className="text-white btn btn-circle btn-primary">
               <AiOutlineArrowRight />
             </a>
           </div>
@@ -65,26 +65,26 @@ const HomeMainHero: FunctionComponent<HomeMainHeroProps> = ({ details }) => {
 
           <div className="flex items-center justify-between flex-grow w-full">
             <div className="flex items-center gap-4 md:gap-8 lg:gap-10">
-              <a href="#slide1" className="btn btn-circle">
+              <a href="#slide1" className="text-white btn btn-circle btn-primary">
                 <AiOutlineArrowLeft />
               </a>
               <div className="flex flex-col w-full gap-6 md:w-4/5 lg:w-3/5 xl:w-1/2">
                 <h1 className="heading1">{detail2.title}</h1>
                 <span className="line-clamp-3">{detail2.description}</span>
                 <div className="flex gap-2">
-                  <span className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
+                  <a href='#slide1' className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
                     1
-                  </span>
-                  <span className="flex items-center justify-center w-10 h-10 text-white rounded-full bg-primary">
+                  </a>
+                  <a href='#slide2' className="flex items-center justify-center w-10 h-10 text-white rounded-full bg-primary">
                     2
-                  </span>
-                  <span className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
+                  </a>
+                  <a href='#slide3' className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
                     3
-                  </span>
+                  </a>
                 </div>
               </div>
             </div>
-            <a href="#slide3" className="btn btn-circle">
+            <a href="#slide3" className="text-white btn btn-circle btn-primary">
               <AiOutlineArrowRight />
             </a>
           </div>
@@ -101,26 +101,26 @@ const HomeMainHero: FunctionComponent<HomeMainHeroProps> = ({ details }) => {
 
           <div className="flex items-center justify-between flex-grow w-full">
             <div className="flex items-center gap-4 md:gap-8 lg:gap-10">
-              <a href="#slide2" className="btn btn-circle">
+              <a href="#slide2" className="text-white btn btn-circle btn-primary">
                 <AiOutlineArrowLeft />
               </a>
               <div className="flex flex-col w-full gap-6 md:w-4/5 lg:w-3/5 xl:w-1/2">
                 <h1 className="heading1">{detail3.title}</h1>
                 <span className="line-clamp-3">{detail3.description}</span>
                 <div className="flex gap-2">
-                  <span className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
+                  <a href='#slide1' className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
                     1
-                  </span>
-                  <span className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
+                  </a>
+                  <a href='#slide2' className="flex items-center justify-center w-10 h-10 border rounded-full border-base-100">
                     2
-                  </span>
-                  <span className="flex items-center justify-center w-10 h-10 text-white rounded-full bg-primary">
+                  </a>
+                  <a href='#slide3' className="flex items-center justify-center w-10 h-10 text-white rounded-full bg-primary">
                     3
-                  </span>
+                  </a>
                 </div>
               </div>
             </div>
-            <a href="#slide1" className="btn btn-circle">
+            <a href="#slide1" className="text-white btn btn-circle btn-primary">
               <AiOutlineArrowRight />
             </a>
           </div>

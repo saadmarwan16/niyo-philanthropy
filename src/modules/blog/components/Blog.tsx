@@ -10,7 +10,7 @@ interface BlogProps {
 }
 
 const Blog: FunctionComponent<BlogProps> = ({ blog }) => {
-  const { category, introduction, time_to_read, title } = blog.attributes;
+  const { category, introduction, time_to_read, title, body } = blog.attributes;
   const image = blog.attributes.image.data?.attributes.url;
 
   return (
@@ -31,7 +31,7 @@ const Blog: FunctionComponent<BlogProps> = ({ blog }) => {
           <small>{time_to_read} min read</small>
         </div>
         <h2 className="card-title line-clamp-1">{title}</h2>
-        <p className="line-clamp-3">{introduction}</p>
+        <p className="line-clamp-3">{introduction ?? body}</p>
         <div className="justify-end mt-2 card-actions">
           <Link
             href={Routes.BLOG_DETAILS("this-is-the-title", blog.id.toString())}

@@ -16,10 +16,11 @@ export interface Datum {
 
 export interface DatumAttributes {
   title: string;
-  introduction: string;
+  introduction: string | null;
   body: string;
-  conclusion: string;
+  conclusion: string | null;
   time_to_read: number;
+  slug: string;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date;

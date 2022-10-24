@@ -16,8 +16,9 @@ import { ErrorModel } from "../../src/shared/errors/error_model";
 import { ProfileModel } from "../../src/modules/profile/data/models/profile_model";
 import CustomLoader from "../../src/shared/components/CustomLoader";
 import ErrorContent from "../../src/shared/components/ErrorContent";
-import { GrAdd, GrUpdate } from "react-icons/gr";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdModeEdit } from "react-icons/md";
+import { RiUserAddFill } from "react-icons/ri";
+import { TiUserAdd } from "react-icons/ti";
 
 interface UserProfilePageProps {
   error: ErrorModel | null;
@@ -85,31 +86,40 @@ const UserProfile: NextPage<UserProfilePageProps> = (props) => {
 
                 <div className="flex-col hidden gap-8 px-4 py-8 border border-gray-500 rounded-lg md:flex md:w-2/5 lg:w-2/6 h-fit">
                   <div className="flex flex-col items-center gap-4">
-                    {/* <div className="flex gap-3">
-                      {user?.profile_image?.url ? (
-                        <>
-                          <button className="btn btn-secondary btn-square">
-                            <GrUpdate className="text-2xl" />
-                          </button>
-                          <button className="btn btn-secondary btn-square">
-                            <MdDelete className="text-2xl" />
-                          </button>
-                        </>
-                      ) : (
-                        <button className="btn btn-secondary btn-square">
-                          <GrAdd className="text-2xl" />
-                        </button>
-                      )}
-                    </div> */}
-                    <Avatar
-                      alt="User Profile Image"
-                      url={
-                        user?.profile_image?.url
-                          ? `${BASE_URL}${user.profile_image.url}`
-                          : "/images/no_profile_image.webp"
-                      }
-                      width="w-32"
-                    />
+                    <div className="image-container fade">
+                      <div
+                        className={
+                          "!flex h-full absolute w-full items-center justify-center gap-2 flex-wrap text-center transition-all text-white flex-grow text-overlay hover:text-white text-transparent text-opacity-0 z-10"
+                        }
+                      >
+                        {user?.profile_image?.url ? (
+                          <>
+                            <MdModeEdit
+                              className="text-4xl hover:cursor-pointer hover:text-accent"
+                              onClick={() => profileController.updateImage()}
+                            />
+                            <MdDelete
+                              className="text-4xl hover:cursor-pointer hover:text-accent"
+                              onClick={() => profileController.deleteImage()}
+                            />
+                          </>
+                        ) : (
+                          <TiUserAdd
+                            className="text-5xl hover:cursor-pointer hover:text-accent"
+                            onClick={() => profileController.addImage()}
+                          />
+                        )}
+                      </div>
+                      <Avatar
+                        alt="User Profile Image"
+                        url={
+                          user?.profile_image?.url
+                            ? `${BASE_URL}${user.profile_image.url}`
+                            : "/images/no_profile_image.webp"
+                        }
+                        width="w-32"
+                      />
+                    </div>
                     <div className="text-center">
                       <p className="heading3">{user?.full_name}</p>
                       <p>{user?.email}</p>

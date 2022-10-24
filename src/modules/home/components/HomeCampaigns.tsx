@@ -14,7 +14,7 @@ interface HomeCampaignsProps {
 const HomeCampaigns: FunctionComponent<HomeCampaignsProps> = ({
   campaigns: { data },
 }) => {
-  const [campaigns, setCampaigns] = useState(data);
+  const [campaigns, _] = useState(data);
   const [start, setStart] = useState(0);
   const control = useAnimation();
 
@@ -106,7 +106,7 @@ const HomeCampaigns: FunctionComponent<HomeCampaignsProps> = ({
                   </a>
                 </Link>
                 <p className="text-gray-500 line-clamp-3">
-                  {campaign.attributes.introduction}
+                  {campaign.attributes.introduction ?? campaign.attributes.body}
                 </p>
                 <progress
                   className="w-full mt-4 sm:mt-6 progress progress-primary"
