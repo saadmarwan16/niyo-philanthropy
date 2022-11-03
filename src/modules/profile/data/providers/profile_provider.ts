@@ -1,17 +1,38 @@
+import imagesController from "../../../../shared/controllers/images_controller";
 import http from "../../../../shared/utils/http";
 import { ConvertProfileModel } from "../models/profile_model";
 
 export class ProfileProvider {
-  addImage = async () => {
-    console.log('add image')
+  addImage = async (formData: FormData) => {
+    const results = await imagesController.create(formData);
+    if (results) {
+      const imageDetails = {
+        id: results[0].id,
+        url: results[0].url,
+      };
+
+      return imageDetails;
+    } else {
+      return null;
+    }
   };
 
-  updateImage = async () => {
-    console.log('update image')
+  updateImage = async (id: string, formData: FormData) => {
+    const results = await imagesController.update(id, formData);
+    if (results) {
+      const imageDetails = {
+        id: results[0].id,
+        url: results[0].url,
+      };
+
+      return imageDetails;
+    } else {
+      return null;
+    }
   };
 
-  deleteImage = async () => {
-    console.log('delete image')
+  deleteImage = async (id: string) => {
+    return await imagesController.delete(id);
   };
 
   getOne = async (token: string, query: string) => {

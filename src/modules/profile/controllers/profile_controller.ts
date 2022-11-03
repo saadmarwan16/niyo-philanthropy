@@ -1,16 +1,17 @@
+import { UserModel } from "../../auth/data/models/user_model";
 import profileRepository from "../data/repositories/profile_repository";
 
 export class ProfileController {
-  addImage = async () => {
-    await profileRepository.addImage()
+  addImage = async (formData: FormData, user: UserModel) => {
+    return await profileRepository.addImage(formData, user);
   };
 
-  updateImage = async () => {
-    await profileRepository.updateImage()
+  updateImage = async (id: string, user: UserModel, formData: FormData) => {
+    return await profileRepository.updateImage(id, user, formData);
   };
 
-  deleteImage = async () => {
-    await profileRepository.deleteImage()
+  deleteImage = async (id: string, user: UserModel) => {
+    return await profileRepository.deleteImage(id, user);
   };
 
   getOne = async (token: string) => {
