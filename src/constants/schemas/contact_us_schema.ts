@@ -9,7 +9,7 @@ const contactUsSchema = object({
   phone: string().optional(),
   message: string()
     .required("This is a required field")
-    .min(15, "Password must contain at least 15 characters"),
+    .min(15, "Message must contain at least 15 characters"),
 }).required();
 
 export default contactUsSchema;

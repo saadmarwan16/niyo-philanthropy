@@ -4,7 +4,7 @@ const resetPasswordSchema = object({
   password: string()
     .required("Password is required")
     .min(6, "Password must contain at least 6 characters"),
-    passwordConfirmation: string()
+  passwordConfirmation: string()
     .required("Confirm password is required")
     .oneOf([ref("password")], "Passwords do not match"),
 }).required();
